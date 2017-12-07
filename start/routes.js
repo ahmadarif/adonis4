@@ -17,10 +17,17 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
+Route.post('api/auth/login', 'AuthController.postLogin')
 Route.group(() => {
-    Route.post('login', 'UserController.login')
-    Route.post('logout', 'UserController.logout')
-    Route.get('users/add', 'UserController.add')
-    Route.get('profile', 'UserController.profile').middleware('auth:api')
-    Route.get('tokens', 'UserController.tokens').middleware('auth:api')
-}).prefix('api')
+    Route.post('logout', 'AuthController.postLogout')
+    Route.get('profile', 'AuthController.getProfile')
+    Route.get('tokens', 'AuthController.getTokens')
+}).prefix('api/auth').middleware('auth:api')
+
+Route.group(() => {
+    Route.get('/', 'UserController.getAll')
+    Route.get('/:id', 'UserController.getById')
+    Route.post('/', 'UserController.postInsert')
+    Route.put('/:id', 'UserController.putUpdate')
+    Route.delete('/:id', 'UserController.deleteById')
+}).prefix('api/users')
