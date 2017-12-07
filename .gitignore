@@ -13,3 +13,5 @@ yarn.lock
 
 # The development sqlite file
 database/development.sqlite
+
+.idea/
