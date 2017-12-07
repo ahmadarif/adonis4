@@ -13,12 +13,12 @@ class UserController {
             const isSame = await Hash.verify(password, user.password)
             if (isSame) {
                 const token = await authenticator.generate(user)
-                return response.send(token)
+                return response.status(200).send(token)
             }
         }
         return response.badRequest({ message : 'Username or Password wrong!' })
     }
-    
+
     async logout({ request, response, auth }) {
         const user = await auth.authenticator('api').getUser()
         await user
