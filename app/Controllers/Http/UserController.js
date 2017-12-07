@@ -21,6 +21,7 @@ class UserController {
 
     async logout({ request, response, auth }) {
         const user = await auth.authenticator('api').getUser()
+        const token = request.header('authorization').replace('Bearer ', '')
         await user
             .tokens()
             .where('type', 'api_token')

@@ -135,10 +135,7 @@ module.exports = {
     enable: true,
     methods: ['POST', 'PUT', 'DELETE'],
     filterUris: [
-      // '/(\/api\/)\w+/g',
-      '/api/login', 
-      '/api/logout',
-      '/api/me'
+      '/api/(.*)'
     ],
     cookieOptions: {
       httpOnly: false,
