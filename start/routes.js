@@ -33,3 +33,5 @@ Route.group(() => {
 }).prefix('api/users')
 
 Route.get('api/queue', 'QueueController.exampleQueue')
+Route.get('api/redis', 'QueueController.exampleRedis')
+Route.get('api/event', 'QueueController.exampleEvent')
