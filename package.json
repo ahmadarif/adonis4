@@ -24,9 +24,11 @@
     "@adonisjs/framework": "^4.0.27",
     "@adonisjs/ignitor": "^1.0.14",
     "@adonisjs/lucid": "^4.0.22",
+    "@adonisjs/redis": "^2.0.3",
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
     "@adonisjs/validator": "^4.0.8",
+    "adonis-kue": "^4.0.0",
     "mysql": "^2.15.0",
     "sqlite3": "^3.1.13"
   },

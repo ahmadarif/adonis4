@@ -31,3 +31,5 @@ Route.group(() => {
     Route.put('/:id', 'UserController.putUpdate')
     Route.delete('/:id', 'UserController.deleteById')
 }).prefix('api/users')
+
+Route.get('api/queue', 'QueueController.exampleQueue')
