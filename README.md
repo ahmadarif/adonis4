@@ -13,6 +13,7 @@ Simple project Adonis 4.0
 - Set your own configuration variable
 - Generate random secret key using command `adonis key:generate`
 - Start server development using command `adonis serve --dev`
+- Start the Queue task using command `adonis kue:listen`
 
 ## Links
 - [Postman Project](https://www.getpostman.com/collections/70ec70ac2fd041098439) for API test
