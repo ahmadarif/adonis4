@@ -21,9 +21,9 @@ class ExceptionHandler {
    * @return {void}
    */
   async handle (error, { request, response }) {
-    const accept = request.accepts(['json'])
+    const type = request.is(['html', 'json'])
 
-    if (accept === 'json') {
+    if (type === 'json') {
       switch (error.name) {
         case 'InvalidApiToken': return response.status(error.status).send({ message : 'Invalid API token.' })
         case 'ModelNotFoundException': return response.status(error.status).send({ message : error.message.split(" ")[6] + ' not found.' })
@@ -43,9 +43,9 @@ class ExceptionHandler {
       } else {
         return response.status(error.status).send({ message : 'Something error happens, we will fix soon.' })
       }
+    } else {
+      response.status(error.status).send(error.message)
     }
-
-    response.status(error.status).send(error.message)
   }
 
   /**
