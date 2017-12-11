@@ -17,7 +17,7 @@ class Example {
     // This is where the work is done.
     async handle (data) {
         sleep(5000);
-        console.log(`Isi pesan = ${data.message}`)
+        console.log(`New Queue received = ${data.message}`)
         return 'haha'
     }
 

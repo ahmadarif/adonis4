@@ -1,0 +1,6 @@
+apps:
+  - name: 'adonis4-example'
+    script: server.js
+    instances: 4
+    exec_mode: cluster
+    watch: true
