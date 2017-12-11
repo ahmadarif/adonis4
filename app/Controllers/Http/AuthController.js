@@ -20,11 +20,11 @@ class AuthController {
     }
 
     async postLogout ({ request, response, auth }) {
-        const user = await auth.authenticator('api').getUser()
-        const token = request.header('authorization').replace('Bearer ', '')
+        const user = auth.current.user
+        const token = auth.getAuthHeader()
         await user
             .tokens()
-            .where('type', 'api_token')
+            .where('token', token)
             .update({ is_revoked: true })
         return response.send({ message: 'Logout successfully' })
     }
