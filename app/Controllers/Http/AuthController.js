@@ -32,6 +32,29 @@ class AuthController {
         return response.send({ message: 'Logout successfully' })
     }
 
+    async postLogoutAll ({ request, response, auth }) {
+        const user = auth.current.user
+        const token = auth.getAuthHeader()
+        await user
+            .tokens()
+            .where('type', 'api_token')
+            .where('is_revoked', false)
+            .update({ is_revoked: true })
+        return response.send({ message: 'Logout successfully' })
+    }
+    
+    async postLogoutOther ({ request, response, auth }) {
+        const user = auth.current.user
+        const token = auth.getAuthHeader()
+        await user
+            .tokens()
+            .where('type', 'api_token')
+            .where('is_revoked', false)
+            .whereNot('token', Encryption.decrypt(token))
+            .update({ is_revoked: true })
+        return response.send({ message: 'Logout successfully' })
+    }
+
     async getProfile ({ auth, response }) {
         const user =  await auth.authenticator('api').getUser()
         return response.send({ data: user })

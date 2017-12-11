@@ -20,6 +20,8 @@ Route.on('/').render('welcome')
 Route.post('api/auth/login', 'AuthController.postLogin')
 Route.group(() => {
     Route.post('logout', 'AuthController.postLogout')
+    Route.post('logoutAll', 'AuthController.postLogoutAll')
+    Route.post('logoutOther', 'AuthController.postLogoutOther')
     Route.get('profile', 'AuthController.getProfile')
     Route.get('tokens', 'AuthController.getTokens')
 }).prefix('api/auth').middleware('auth:api')
