@@ -12,8 +12,9 @@ Simple project Adonis 4.0
 - Copy `.env.example` to `.env`
 - Set your own configuration variable
 - Generate random secret key using command `adonis key:generate`
-- Start server development using command `adonis serve --dev`
-- Start the Queue task using command `adonis kue:listen`
+- Start server development using command `adonis serve --dev` (development) or `node server.js` (production)
+- Start Queue using command `adonis kue:listen`
+- Start Scheduler using command `adonis run:scheduler`
 
 ## Links
 - [Postman Project](https://www.getpostman.com/collections/70ec70ac2fd041098439) for API test

@@ -22,7 +22,8 @@ const providers = [
   '@adonisjs/validator/providers/ValidatorProvider',
   'adonis-kue/providers/KueProvider',
   '@adonisjs/redis/providers/RedisProvider',
-  'adonis-throttle/providers/ThrottleProvider'
+  'adonis-throttle/providers/ThrottleProvider',
+  'adonis-scheduler/providers/SchedulerProvider'
 ]
 
 /*
@@ -36,7 +37,8 @@ const providers = [
 */
 const aceProviders = [
   '@adonisjs/lucid/providers/MigrationsProvider',
-  'adonis-kue/providers/CommandsProvider'
+  'adonis-kue/providers/CommandsProvider',
+  'adonis-scheduler/providers/CommandsProvider'
 ]
 
 /*
@@ -52,7 +54,8 @@ const aceProviders = [
 |
 */
 const aliases = {
-  Throttle: 'Adonis/Addons/Throttle'
+  Throttle: 'Adonis/Addons/Throttle',
+  Scheduler: 'Adonis/Addons/Scheduler'
 }
 
 /*
