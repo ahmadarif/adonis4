@@ -2,6 +2,7 @@
 
 const User = use('App/Models/User')
 const Hash = use('Hash')
+const Encryption = use('Encryption')
 
 class AuthController {
 
@@ -24,7 +25,9 @@ class AuthController {
         const token = auth.getAuthHeader()
         await user
             .tokens()
-            .where('token', token)
+            .where('type', 'api_token')
+            .where('is_revoked', false)
+            .where('token', Encryption.decrypt(token))
             .update({ is_revoked: true })
         return response.send({ message: 'Logout successfully' })
     }
