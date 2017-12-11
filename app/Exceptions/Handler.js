@@ -28,6 +28,7 @@ class ExceptionHandler {
         case 'InvalidApiToken': return response.status(error.status).send({ message : 'Invalid API token.' })
         case 'ModelNotFoundException': return response.status(error.status).send({ message : error.message.split(" ")[6] + ' not found.' })
         case 'HttpException': return response.status(error.status).send({ message : error.message })
+        case 'TooManyRequests': return response.status(error.status).send({ message : error.message })
       }
       
       switch (error.code) {

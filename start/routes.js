@@ -24,7 +24,7 @@ Route.group(() => {
     Route.post('logoutOther', 'AuthController.postLogoutOther')
     Route.get('profile', 'AuthController.getProfile')
     Route.get('tokens', 'AuthController.getTokens')
-}).prefix('api/auth').middleware('auth:api')
+}).prefix('api/auth').middleware(['throttle:30', 'auth:api'])
 
 Route.group(() => {
     Route.get('/', 'UserController.getAll')
@@ -32,8 +32,10 @@ Route.group(() => {
     Route.post('/', 'UserController.postInsert')
     Route.put('/:id', 'UserController.putUpdate')
     Route.delete('/:id', 'UserController.deleteById')
-}).prefix('api/users')
+}).prefix('api/users').middleware(['throttle:30'])
 
-Route.get('api/queue', 'QueueController.exampleQueue')
-Route.get('api/redis', 'QueueController.exampleRedis')
-Route.get('api/event', 'QueueController.exampleEvent')
+Route.group(() => {
+    Route.get('api/queue', 'QueueController.exampleQueue')
+    Route.get('api/redis', 'QueueController.exampleRedis')
+    Route.get('api/event', 'QueueController.exampleEvent')
+}).middleware(['throttle:30'])
