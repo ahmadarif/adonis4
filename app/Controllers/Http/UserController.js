@@ -5,7 +5,7 @@ const { validate, validateAll, sanitize } = use('Validator')
 const ValidationException = use('App/Exceptions/ValidationException')
 
 class UserController {
-    
+
     async getAll ({ response }) {
         const users = await User.all()
         return response.send({ data: users })

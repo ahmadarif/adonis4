@@ -3,10 +3,18 @@
 const User = use('App/Models/User')
 const Hash = use('Hash')
 const Encryption = use('Encryption')
+const { validateAll} = use('Validator')
+const ValidationException = use('App/Exceptions/ValidationException')
 
 class AuthController {
 
     async postLogin ({ request, response, auth }) {
+        const validation = await validateAll(request.all(), {
+            email: 'required|email',
+            password: 'required'
+        })
+        if (validation.fails()) throw new ValidationException(validation.messages())
+
         const { email, password } = request.all()
         const authenticator = auth.authenticator('api')
         const user = await User.findBy('email', email)
@@ -20,7 +28,7 @@ class AuthController {
         return response.badRequest({ message : 'Username or Password wrong!' })
     }
 
-    async postLogout ({ request, response, auth }) {
+    async postLogout ({ response, auth }) {
         const user = auth.current.user
         const token = auth.getAuthHeader()
         await user
@@ -32,9 +40,8 @@ class AuthController {
         return response.send({ message: 'Logout successfully' })
     }
 
-    async postLogoutAll ({ request, response, auth }) {
+    async postLogoutAll ({ response, auth }) {
         const user = auth.current.user
-        const token = auth.getAuthHeader()
         await user
             .tokens()
             .where('type', 'api_token')
@@ -42,8 +49,8 @@ class AuthController {
             .update({ is_revoked: true })
         return response.send({ message: 'Logout successfully' })
     }
-    
-    async postLogoutOther ({ request, response, auth }) {
+
+    async postLogoutOther ({ response, auth }) {
         const user = auth.current.user
         const token = auth.getAuthHeader()
         await user
