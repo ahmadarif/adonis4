@@ -7,7 +7,7 @@ const Event = use('Event')
 
 class QueueController {
 
-    async exampleQueue({ response }) {
+    async exampleQueue({ request, response }) {
         const data = { message: request.input('message') } // Data to be passed to job handle
         const priority = 'normal' // Priority of job, can be low, normal, medium, high or critical
         const attempts = 1 // Number of times to attempt job if it fails
