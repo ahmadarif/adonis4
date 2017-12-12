@@ -16,6 +16,11 @@ Simple project Adonis 4.0
 - Start Queue using command `adonis kue:listen`
 - Start Scheduler using command `adonis run:scheduler`
 
+## Development
+- Create new Redis listener `adonis make:listener ListenerName`
+- Create new Scheduler `adonis make:task SchedulerName`
+- Other Adonis help `adonis --help`
+
 ## Links
 - [Postman Project](https://www.getpostman.com/collections/70ec70ac2fd041098439) for API test
 - [Postman Environment Example](Adonis4.postman_environment.json)
