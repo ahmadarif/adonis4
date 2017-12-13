@@ -14,18 +14,19 @@ class AuthController {
             password: 'required'
         })
         if (validation.fails()) throw new ValidationException(validation.messages())
-
-        const { email, password } = request.all()
-        const authenticator = auth.authenticator('api')
-        const user = await User.findBy('email', email)
-        if (user) {
-            const isSame = await Hash.verify(password, user.password)
-            if (isSame) {
-                const token = await authenticator.generate(user)
-                return response.status(200).send({ data: token })
+        
+        try {
+            const { email, password } = request.all()
+            const token = await auth.authenticator('api').attempt(email, password)
+            return response.status(200).send({ data: token })
+        } catch (error) {
+            let message = null
+            switch (error.name) {
+                case 'UserNotFoundException': message = 'Cannot find user with provided email.'; break
+                case 'PasswordMisMatchException': message = 'Invalid user password.'; break
             }
+            return response.status(error.status).send({ message: message })
         }
-        return response.badRequest({ message : 'Username or Password wrong!' })
     }
 
     async postLogout ({ response, auth }) {
@@ -63,7 +64,7 @@ class AuthController {
     }
 
     async getProfile ({ response, auth }) {
-        const user =  await auth.authenticator('api').getUser()
+        const user =  await auth.current.user
         return response.send({ data: user })
     }
 
