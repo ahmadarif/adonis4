@@ -22,7 +22,7 @@ Route.group(() => {
     Route.post('logout', 'AuthController.postLogout')
     Route.post('logoutAll', 'AuthController.postLogoutAll')
     Route.post('logoutOther', 'AuthController.postLogoutOther')
-    Route.get('profile', 'AuthController.getProfile')
+    Route.get('profile', 'AuthController.getProfile').middleware(['role:sample1@mail.com'])
     Route.get('tokens', 'AuthController.getTokens')
 }).prefix('api/auth').middleware(['throttle:20', 'auth:api'])
 

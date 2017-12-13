@@ -3,7 +3,7 @@
 const User = use('App/Models/User')
 const Hash = use('Hash')
 const Encryption = use('Encryption')
-const { validateAll} = use('Validator')
+const { validateAll } = use('Validator')
 const ValidationException = use('App/Exceptions/ValidationException')
 
 class AuthController {
@@ -62,7 +62,7 @@ class AuthController {
         return response.send({ message: 'Logout successfully' })
     }
 
-    async getProfile ({ auth, response }) {
+    async getProfile ({ response, auth }) {
         const user =  await auth.authenticator('api').getUser()
         return response.send({ data: user })
     }
