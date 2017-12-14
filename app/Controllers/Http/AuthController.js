@@ -75,34 +75,37 @@ class AuthController {
 
 
     // web session: ===================================================================================
-    async redirectToProvider ({ally, params}) {
+    async redirectToProvider ({ ally, params }) {
         await ally.driver(params.provider).redirect()
     }
     
-    async handleProviderCallback ({params, ally, auth, response}) {
+    async handleProviderCallback ({ params, session, ally, auth, response }) {
         const provider = params.provider
         try {
             const userData = await ally.driver(params.provider).getUser()
 
-            // user details to be saved
-            const userDetails = {
-                email: userData.getEmail(),
-                username: userData.getNickname(),
-                password: userData.getNickname()
-            }
+            try {
+                await auth.check()
+            } catch (error) {
+                // user details to be saved
+                const userDetails = {
+                    email: userData.getEmail(),
+                    username: userData.getNickname(),
+                    password: userData.getNickname()
+                }
 
-            // search for existing user
-            const whereClause = {
-                email: userData.getEmail()
+                // search for existing user
+                const whereClause = {
+                    email: userData.getEmail()
+                }
+        
+                const user = await User.findOrCreate(whereClause, userDetails)
+                await auth.login(user)
+            } finally {
+                return response.redirect('/')
             }
-    
-            const user = await User.findOrCreate(whereClause, userDetails)
-            await auth.login(user)
-            
-            return response.redirect('/')
         } catch (e) {
-            console.log(e)
-            response.redirect('/auth/' + provider)
+            return response.redirect('/auth/' + provider)
         }
     }
 
