@@ -83,22 +83,22 @@ class AuthController {
         const provider = params.provider
         try {
             const userData = await ally.driver(params.provider).getUser()
-    
-            const authUser = await User.findBy('email', userData.getEmail())
 
-            if (authUser !== null) {
-                await auth.loginViaId(authUser.id)
-                return response.redirect('/')
-                // return response.send({ data: userData })
+            // user details to be saved
+            const userDetails = {
+                email: userData.getEmail(),
+                username: userData.getNickname(),
+                password: userData.getNickname()
+            }
+
+            // search for existing user
+            const whereClause = {
+                email: userData.getEmail()
             }
     
-            const user = new User()
-            user.username = userData.getNickname()
-            user.email = userData.getEmail()
-            user.password = userData.getNickname()
-            await user.save()
-        
-            await auth.loginViaId(user.id)
+            const user = await User.findOrCreate(whereClause, userDetails)
+            await auth.login(user)
+            
             return response.redirect('/')
         } catch (e) {
             console.log(e)
