@@ -73,6 +73,48 @@ class AuthController {
         return response.send({ data: tokens })
     }
 
+
+    // web session: ===================================================================================
+    async redirectToProvider ({ally, params}) {
+        await ally.driver(params.provider).redirect()
+    }
+    
+    async handleProviderCallback ({params, ally, auth, response}) {
+        const provider = params.provider
+        try {
+            const userData = await ally.driver(params.provider).getUser()
+    
+            const authUser = await User.findBy('email', userData.getEmail())
+
+            if (authUser !== null) {
+                await auth.loginViaId(authUser.id)
+                return response.redirect('/')
+                // return response.send({ data: userData })
+            }
+    
+            const user = new User()
+            user.username = userData.getNickname()
+            user.email = userData.getEmail()
+            user.password = userData.getNickname()
+            await user.save()
+        
+            await auth.loginViaId(user.id)
+            return response.redirect('/')
+        } catch (e) {
+            console.log(e)
+            response.redirect('/auth/' + provider)
+        }
+    }
+
+    async logout ({auth, response}) {
+        await auth.logout()
+        response.redirect('/')
+    }
+
+    async currentProfile ({ auth }) {
+        return auth.current.user
+    }
+
 }
 
 module.exports = AuthController

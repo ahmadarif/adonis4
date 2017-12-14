@@ -23,7 +23,8 @@ const providers = [
   'adonis-kue/providers/KueProvider',
   '@adonisjs/redis/providers/RedisProvider',
   'adonis-throttle/providers/ThrottleProvider',
-  'adonis-scheduler/providers/SchedulerProvider'
+  'adonis-scheduler/providers/SchedulerProvider',
+  '@adonisjs/ally/providers/AllyProvider'
 ]
 
 /*

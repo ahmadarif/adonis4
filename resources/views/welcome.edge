@@ -10,6 +10,19 @@
     <div class="logo"></div>
     <div class="title"></div>
     <div class="subtitle"><p>AdonisJs simplicity will make you feel confident about your code</p></div>
+
+    @loggedIn
+    <div class="subtitle" style="margin-top:20dp; background:white;">
+      <h2> Hello {{ auth.user.username }} </h2>
+    </div>
+    <a class="subtitle" href="{{ route('logout') }}">Logout?</a>
+    @else
+    <div class="subtitle" style="margin-top:20dp; background:white;">
+      <a href="{{ route('social.login', { provider: 'github' }) }}">
+        <img src="{{ assetsUrl('github-512.png') }}" alt="Go to W3Schools!" width="42" height="42" border="0">
+      </a>
+    </div>
+    @endloggedIn
   </section>
 </body>
 </html>

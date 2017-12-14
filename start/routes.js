@@ -39,3 +39,8 @@ Route.group(() => {
     Route.get('api/redis', 'QueueController.exampleRedis')
     Route.get('api/event', 'QueueController.exampleEvent')
 }).middleware(['throttle:20'])
+
+Route.get('/auth/:provider', 'AuthController.redirectToProvider').as('social.login')
+Route.get('/authenticated/:provider', 'AuthController.handleProviderCallback').as('social.login.callback')
+Route.get('/logout', 'AuthController.logout').as('logout')
+Route.get('/profile', 'AuthController.currentProfile').as('profile').middleware('auth')
