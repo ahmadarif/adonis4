@@ -67,6 +67,16 @@ section:before {
   animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 0.5s forwards;
 }
 
+.signinwith {
+  margin-top: 25px;
+  color: #BDB3CB;
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: 0.5;
+  opacity: 0;
+  animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 0.5s forwards;
+}
+
 @keyframes slideUp {
   0% {
     transform: translateY(40px);

@@ -17,10 +17,18 @@
     </div>
     <a class="subtitle" href="{{ route('logout') }}">Logout?</a>
     @else
-    <div class="subtitle" style="margin-top:20dp; background:white;">
-      <a href="{{ route('social.login', { provider: 'github' }) }}">
-        <img src="{{ assetsUrl('github-512.png') }}" alt="Go to W3Schools!" width="42" height="42" border="0">
-      </a>
+    <div class="subtitle" style="margin-top:20dp;">
+      <div style="font-weight:bold">Sign in with</div>
+      <div style="background:white; display: inline-block;">
+        <a href="{{ route('social.login', { provider: 'google' }) }}">
+          <img src="{{ assetsUrl('google-250.jpg') }}" alt="Login with Google!" width="42" height="42" border="0">
+        </a>
+      </div>
+      <div style="background:white; display: inline-block;">
+        <a style="background:white" href="{{ route('social.login', { provider: 'github' }) }}">
+          <img src="{{ assetsUrl('github-512.png') }}" alt="Login with Github!" width="42" height="42" border="0">
+        </a>
+      </div>
     </div>
     @endloggedIn
   </section>
