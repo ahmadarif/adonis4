@@ -22,8 +22,9 @@ Simple project Adonis 4.0
 - Other Adonis help `adonis --help`
 
 ## Links
-- [Postman Project](https://www.getpostman.com/collections/70ec70ac2fd041098439) for API test
+- [Postman Project](https://www.getpostman.com/collections/70ec70ac2fd041098439)
 - [Postman Environment Example](Adonis4.postman_environment.json)
+- [Social Auth Configuration](SocialAuthConfig.md)
 
 ## Notes
 - Manage your NodeJS & NPM version, please use NVM (Node Version Manager) like [n](https://github.com/tj/n) or [nvm-windows](https://github.com/coreybutler/nvm-windows) for simplicity.
