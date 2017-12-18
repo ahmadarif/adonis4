@@ -39,6 +39,11 @@
           <img src="{{ assetsUrl('twitter.png') }}" alt="Login with Twitter!" width="42" height="42" border="0">
         </a>
       </div>
+      <div style="background:white; display: inline-block;">
+        <a style="background:white" href="{{ route('social.login', { provider: 'foursquare' }) }}">
+          <img src="{{ assetsUrl('foursquare.png') }}" alt="Login with Instagram!" width="42" height="42" border="0">
+        </a>
+      </div>
     </div>
     @endloggedIn
   </section>

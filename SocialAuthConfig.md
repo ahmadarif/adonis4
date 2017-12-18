@@ -1,5 +1,4 @@
 # Google
-
 - Generate a Client ID and Client Secret in a Google project
     - Log in to your Google account and go to the [APIs & services](https://console.developers.google.com/projectselector/apis/credentials).
     - Navigate to `Credentials` using the left-hand menu.
@@ -38,4 +37,12 @@
 - Click `Create New App` button.
 - Fill out all the required fields (Website & Callback URL, Privacy Policy URL, and Terms of Service URL), and then save.
 - Go to `Permissions` tab, under Application Type select `Read and Write` access and checklist `Request email addresses from users`, and then save.
+- Copy your Client ID, Client Secret keys and Redirect/Callback URL into your `.env` configuration.
+
+
+# Foursquare
+- Go to [Foursquare for Developers](https://developer.foursquare.com/).
+- Click on `My Apps` in the top menu.
+- Click the `Create A New App` button.
+- Fill out all the required fields, click Save Changes.
 - Copy your Client ID, Client Secret keys and Redirect/Callback URL into your `.env` configuration.
