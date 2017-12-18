@@ -87,6 +87,9 @@ class AuthController {
             try {
                 await auth.check()
             } catch (error) {
+                console.log('error = ' + error)
+                console.log('email = ' + userData.getEmail())
+
                 // user details to be saved
                 const userDetails = {
                     email: userData.getEmail(),
@@ -105,6 +108,7 @@ class AuthController {
                 return response.redirect('/')
             }
         } catch (e) {
+            console.log('error getUser() = ' + e)
             return response.redirect('/auth/' + provider)
         }
     }

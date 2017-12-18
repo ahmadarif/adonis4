@@ -97,14 +97,29 @@ module.exports = {
      | LinkedIn Configuration
      |--------------------------------------------------------------------------
      |
-     | You can access your application credentials from the Foursquare developers
-     | console. https://developer.foursquare.com/
+     | You can access your application credentials from the LinkedIn developers
+     | console. https://developer.linkedin.com/
      |
      */
     linkedin: {
       clientId: Env.get('LINKEDIN_CLIENT_ID'),
       clientSecret: Env.get('LINKEDIN_CLIENT_SECRET'),
       redirectUri: Env.get('LINKEDIN_REDIRECT_URI')
+    },
+
+    /*
+     |--------------------------------------------------------------------------
+     | Twitter Configuration
+     |--------------------------------------------------------------------------
+     |
+     | You can access your application credentials from the Twitter developers
+     | console. https://apps.twitter.com/
+     |
+     */
+    twitter: {
+      clientId: Env.get('TWITTER_CLIENT_ID'),
+      clientSecret: Env.get('TWITTER_CLIENT_SECRET'),
+      redirectUri: Env.get('TWITTER_REDIRECT_URI')
     }
   }
 }

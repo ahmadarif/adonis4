@@ -31,3 +31,11 @@
 - Navigate to `Authentication`, checklist the required permission (basic profile, email, etc).
 - Fill out the field `Redirect URL Authorized`, then click `save` button.
 - Copy your Client ID, Client Secret keys and Redirect/Callback URL into your `.env` configuration
+
+
+# Twitter
+- Sign in at https://apps.twitter.com/.
+- Click `Create New App` button.
+- Fill out all the required fields (Website & Callback URL, Privacy Policy URL, and Terms of Service URL), and then save.
+- Go to `Permissions` tab, under Application Type select `Read and Write` access and checklist `Request email addresses from users`, and then save.
+- Copy your Client ID, Client Secret keys and Redirect/Callback URL into your `.env` configuration.

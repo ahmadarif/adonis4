@@ -34,6 +34,11 @@
           <img src="{{ assetsUrl('linkedin.png') }}" alt="Login with LinkedIn!" width="42" height="42" border="0">
         </a>
       </div>
+      <div style="background:white; display: inline-block;">
+        <a style="background:white" href="{{ route('social.login', { provider: 'twitter' }) }}">
+          <img src="{{ assetsUrl('twitter.png') }}" alt="Login with Twitter!" width="42" height="42" border="0">
+        </a>
+      </div>
     </div>
     @endloggedIn
   </section>
