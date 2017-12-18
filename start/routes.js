@@ -44,3 +44,4 @@ Route.get('/auth/:provider', 'AuthController.redirectToProvider').as('social.log
 Route.get('/auth/:provider/callback', 'AuthController.handleProviderCallback').as('social.login.callback')
 Route.get('/logout', 'AuthController.logout').as('logout')
 Route.get('/profile', 'AuthController.currentProfile').as('profile').middleware('auth')
+Route.get('/forgotPassword', 'AuthController.forgotPassword').as('forgotPassword')

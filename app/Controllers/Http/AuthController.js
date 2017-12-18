@@ -5,6 +5,8 @@ const Hash = use('Hash')
 const Encryption = use('Encryption')
 const { validateAll } = use('Validator')
 const ValidationException = use('App/Exceptions/ValidationException')
+const randomstring = use("randomstring")
+const Kue = use('Kue')
 
 class AuthController {
 
@@ -120,6 +122,24 @@ class AuthController {
 
     async currentProfile ({ auth }) {
         return auth.current.user
+    }
+
+    async forgotPassword ({ request, response }) {
+        const validation = await validateAll(request.all(), {
+            email: 'required|email|exists:users,email'
+        })
+        if (validation.fails()) throw new ValidationException(validation.messages())
+
+        const plainPassword = randomstring.generate(8)
+        const safePassword = await Hash.make(plainPassword)
+        const user = await User.findBy('email', request.input('email'))
+        user.password = safePassword
+        await user.save()
+
+        const data = { newPassword: plainPassword, user: user.toJSON() }
+        Kue.dispatch('forgotpassword-job', data, 'high')
+
+        return response.send({ message: 'New password will been send to your Email.' })
     }
 
 }

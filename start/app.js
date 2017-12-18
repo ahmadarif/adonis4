@@ -24,7 +24,8 @@ const providers = [
   '@adonisjs/redis/providers/RedisProvider',
   'adonis-throttle/providers/ThrottleProvider',
   'adonis-scheduler/providers/SchedulerProvider',
-  '@adonisjs/ally/providers/AllyProvider'
+  '@adonisjs/ally/providers/AllyProvider',
+  '@adonisjs/mail/providers/MailProvider'
 ]
 
 /*
@@ -70,7 +71,8 @@ const aliases = {
 const commands = []
 
 const jobs = [
-  'App/Jobs/Example'
+  'App/Jobs/Example',
+  'App/Jobs/ForgotPassword'
 ]
 
 module.exports = { providers, aceProviders, aliases, commands, jobs }
