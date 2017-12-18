@@ -90,6 +90,21 @@ module.exports = {
       clientId: Env.get('FOURSQUARE_ID'),
       clientSecret: Env.get('FOURSQUARE_SECRET'),
       redirectUri: Env.get('FOURSQUARE_REDIRECT_URI')
+    },
+
+    /*
+     |--------------------------------------------------------------------------
+     | LinkedIn Configuration
+     |--------------------------------------------------------------------------
+     |
+     | You can access your application credentials from the Foursquare developers
+     | console. https://developer.foursquare.com/
+     |
+     */
+    linkedin: {
+      clientId: Env.get('LINKEDIN_CLIENT_ID'),
+      clientSecret: Env.get('LINKEDIN_CLIENT_SECRET'),
+      redirectUri: Env.get('LINKEDIN_REDIRECT_URI')
     }
   }
 }
