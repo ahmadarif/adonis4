@@ -14,12 +14,16 @@ class ForgotPassword {
 
     async handle (data) {
         console.log('ForgotPassword: running')
-        await Mail.send('emails.forgotPassword', data, (message) => {
-            message
-                .to(data.user.email)
-                .from('Daily Event')
-                .subject('Daily Event - Forgot Password')
-        })
+        try {
+            await Mail.send('emails.forgotPassword', data, (message) => {
+                message
+                    .to(data.user.email)
+                    .from('Daily Event')
+                    .subject('Daily Event - Forgot Password')
+            })
+        } catch (e) {
+            console.log(e)
+        }
         console.log('ForgotPassword: finished')
     }
 
