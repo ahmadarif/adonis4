@@ -1,5 +1,7 @@
 'use strict'
 
+const Logger = use('Logger')
+
 class Example {
 
   // This is required. This is the schedule for which the task will run.
@@ -13,7 +15,8 @@ class Example {
   async handle() {
     // Do stuff here
     // Supports `async/await`
-    console.log('Every minute, time is ' + new Date())
+    Logger.info('Every minute, time is ' + new Date())
+    // Logger.transport('file').error('Every minute, time is ' + new Date())
   }
 
 }
