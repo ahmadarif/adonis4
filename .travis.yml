@@ -3,6 +3,8 @@ node_js:
   - node
   - 8.9.1
 sudo: false
+notifications:
+  slack: gambitechno:edLQSSlj2SRDMpLqzVy89oYp
 cache:
   directories:
     - "node_modules"
