@@ -1,9 +1,12 @@
 language: node_js
 node_js:
-- node
-- 8.9.1
+  - node
+  - 8.9.1
 sudo: false
+cache:
+  directories:
+    - "node_modules"
 before_install:
-- cp .env.example .env
+  - cp .env.example .env
 install:
-- npm install
+  - npm install
