@@ -5,9 +5,11 @@
     </a>
 </div>
 <br />
+
 <div align="center">
-    [![Build Status](https://travis-ci.org/ahmadarif/adonis4.svg?branch=master)](https://travis-ci.org/ahmadarif/adonis4)
+[![Build Status][https://travis-ci.org/ahmadarif/adonis4.svg?branch=master]https://travis-ci.org/ahmadarif/adonis4)
 </div>
+<br />
 
 Simple project Adonis 4.0
 
