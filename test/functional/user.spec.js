@@ -28,7 +28,7 @@ test('check User password has been hashed', async ({ assert }) => {
   const user = await User.findBy('email', 'email@mail.com')
   const isSame = await Hash.verify('123', user.password)
   assert.isTrue(isSame)
-})
+}).timeout(5000)
 
 test('get list of Users', async ({ client }) => {
   const response = await client.get('/api/users').type('json').end()
@@ -41,7 +41,7 @@ test('get list of Users', async ({ client }) => {
       }
     ]
   })
-})
+}).timeout(5000)
 
 test('get User by ID', async ({ client }) => {
   const response = await client.get('/api/users/1').type('json').end()
@@ -53,7 +53,7 @@ test('get User by ID', async ({ client }) => {
       email: "email@mail.com"
     }
   })
-})
+}).timeout(5000)
 
 test('insert new User', async ({ client }) => {
   const response = await client.post('/api/users')
@@ -67,7 +67,7 @@ test('insert new User', async ({ client }) => {
   response.assertJSONSubset({
     message: 'Insert successfully.'
   })
-})
+}).timeout(5000)
 
 test('check User has been added', async ({ client }) => {
   const response = await client.get('/api/users').type('json').end()
@@ -80,7 +80,7 @@ test('check User has been added', async ({ client }) => {
       }
     ]
   })
-})
+}).timeout(5000)
 
 test('update User by ID', async ({ client }) => {
   const response = await client.put('/api/users/1')
@@ -94,7 +94,7 @@ test('update User by ID', async ({ client }) => {
   response.assertJSONSubset({
     message: 'Update successfully.'
   })
-})
+}).timeout(5000)
 
 test('check User has been updated', async ({ client }) => {
   const response = await client.get('/api/users').type('json').end()
@@ -107,7 +107,7 @@ test('check User has been updated', async ({ client }) => {
       }
     ]
   })
-})
+}).timeout(5000)
 
 test('delete User by ID', async ({ client }) => {
   const response = await client.delete('/api/users/1').type('json').end()
@@ -115,7 +115,7 @@ test('delete User by ID', async ({ client }) => {
   response.assertJSONSubset({
     message: 'Delete successfully.'
   })
-})
+}).timeout(5000)
 
 test('check User has been deleted', async ({ client }) => {
   const response = await client.get('/api/users/1').type('json').end()
@@ -123,4 +123,4 @@ test('check User has been deleted', async ({ client }) => {
   response.assertJSONSubset({
     message: 'User not found.'
   })
-})
+}).timeout(5000)

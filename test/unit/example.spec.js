@@ -8,4 +8,4 @@ test('must throw exception', async ({ assert }) => {
   } catch ({ message }) {
     assert.equal(message, 'Some error message')
   }
-})
+}).timeout(5000)
