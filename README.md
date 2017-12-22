@@ -11,6 +11,8 @@
 [![NPM Version](https://img.shields.io/npm/v/@adonisjs/framework.svg?style=flat-square)](https://npmjs.org/package/@adonisjs/framework)
 [![Build Status](https://travis-ci.org/ahmadarif/adonis4.svg?branch=master)](https://travis-ci.org/ahmadarif/adonis4)
 [![HitCount](http://hits.dwyl.io/ahmadarif/adonis4.svg)](http://hits.dwyl.io/ahmadarif/adonis4)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/ahmadarif/adonis4/issues)
+
 </div>
 <br />
 
