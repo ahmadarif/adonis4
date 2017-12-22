@@ -30,6 +30,8 @@
     "@adonisjs/session": "^1.0.19",
     "@adonisjs/shield": "^1.0.4",
     "@adonisjs/validator": "^4.0.8",
+    "@adonisjs/vow": "^1.0.13",
+    "@adonisjs/vow-browser": "^1.0.5",
     "adonis-kue": "^4.0.0",
     "adonis-scheduler": "^3.0.0",
     "adonis-throttle": "^2.0.1",
