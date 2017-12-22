@@ -8,5 +8,8 @@ cache:
     - "node_modules"
 before_install:
   - cp .env.example .env
+  - npm i -g @adonisjs/cli
 install:
   - npm install
+script:
+  - adonis test
