@@ -1,4 +1,14 @@
 ## Description
+<div align="center">
+    <a href="https://travis-ci.org/">
+        <img src="http://res.cloudinary.com/adonisjs/image/upload/q_100/v1497112678/adonis-purple_pzkmzt.svg" width="200px" align="center" hspace="30px" vspace="140px">
+    </a>
+</div>
+<br />
+<div align="center">
+    [![Build Status](https://travis-ci.org/ahmadarif/adonis4.svg?branch=master)](https://travis-ci.org/ahmadarif/adonis4)
+</div>
+
 Simple project Adonis 4.0
 
 ## Requirements
