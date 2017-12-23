@@ -5,6 +5,8 @@ node_js:
 sudo: false
 notifications:
   slack: gambitechno:edLQSSlj2SRDMpLqzVy89oYp
+services:
+  - redis-server
 cache:
   directories:
     - "node_modules"
