@@ -10,8 +10,8 @@ const Server = use('Server')
 | Run the scheduler on boot of the web sever.
 |
 */
-// const Scheduler = use('Adonis/Addons/Scheduler')
-// Scheduler.run()
+const Scheduler = use('Adonis/Addons/Scheduler')
+Scheduler.run()
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +21,8 @@ const Server = use('Server')
 | Run the queue on boot of the web sever.
 |
 */
-// const Queue = use('Adonis/Addons/Kue')
-// Queue.listen()
+const Queue = use('Adonis/Addons/Kue')
+Queue.listen()
 
 /*
 |--------------------------------------------------------------------------
