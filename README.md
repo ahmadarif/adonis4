@@ -37,6 +37,15 @@ Simple project Adonis 4.0
 - Create new Scheduler `adonis make:task SchedulerName`
 - Other Adonis help `adonis --help`
 
+## Production
+- Use pm2 to start the server, use command `pm2 start pm2-config.yml`. If only single instance using command `pm2 start server.js`.
+- Run Queue and Scheduler using [supervisor](http://supervisord.org/):
+    - Copy [supervisor-adonis4.conf](supervisor-adonis4.conf) to `/etc/supervisor/conf.d/<COPY HERE>`.
+    - Reread `supervisor` using command `supervisorctl reread`.
+    - Update process group using command `supervisorctl update`.
+    - Run Queue process using command `supervisorctl start adonis4-queue:*`.
+    - Run Scheduler using command `supervisorctl start adonis4-scheduler:*`.
+
 ## Links
 - [Postman Project](https://www.getpostman.com/collections/70ec70ac2fd041098439)
 - [Postman Environment Example](Adonis4.postman_environment.json)
