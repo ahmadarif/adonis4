@@ -29,10 +29,10 @@ Simple project Adonis 4.0
 - Set your own configuration variable
 - Generate random secret key using command `adonis key:generate`
 - Start server development using command `adonis serve --dev` (development) or `node server.js` (production)
-- Start Queue using command `adonis kue:listen`
-- Start Scheduler using command `adonis run:scheduler`
 
 ## Development
+- Start Queue using command `adonis kue:listen`
+- Start Scheduler using command `adonis run:scheduler`
 - Create new Redis listener `adonis make:listener ListenerName`
 - Create new Scheduler `adonis make:task SchedulerName`
 - Other Adonis help `adonis --help`
