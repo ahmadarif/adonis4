@@ -7,4 +7,4 @@ trait('Test/Browser')
 test('Visit home page', async ({ browser }) => {
   const page = await browser.visit('/')
   await page.assertHas('Adonis')
-}).timeout(5000)
+}).timeout(0)

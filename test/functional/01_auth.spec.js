@@ -30,7 +30,8 @@ test('login', async ({ client }) => {
     })
     .type('json').end()
 
-  token = JSON.parse(response.text).data.token
+  const data = JSON.parse(response.text).data
+  token = data.token
   
   response.assertStatus(200)
   response.assertJSONSubset({
