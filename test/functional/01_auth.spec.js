@@ -30,6 +30,8 @@ test('login', async ({ client }) => {
     })
     .type('json').end()
 
+  console.log(response.text)
+
   const data = await JSON.parse(response.text).data
   token = data.token
   
