@@ -30,10 +30,7 @@ test('login', async ({ client }) => {
     })
     .type('json').end()
 
-  console.log(response.text)
-
-  const data = await JSON.parse(response.text).data
-  token = data.token
+  token = await JSON.parse(response.text).data.token
   
   response.assertStatus(200)
   response.assertJSONSubset({
