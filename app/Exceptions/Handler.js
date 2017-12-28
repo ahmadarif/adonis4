@@ -40,7 +40,7 @@ class ExceptionHandler {
         case 400: return response.status(error.status).send({ message : 'Bad request.' })
       }
 
-      if (Env.get('NODE_ENV') === 'development') {
+      if (Env.get('NODE_ENV') === 'development' || Env.get('NODE_ENV') === 'testing') {
         return response.status(error.status).send({ errorMessage: error.message, errorName: error.name, errorCode: error.code })
       } else {
         return response.status(error.status).send({ message : 'Something error happens, we will fix soon.' })
