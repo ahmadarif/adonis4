@@ -1,8 +1,9 @@
 'use strict'
 
 const { test, trait, before, after } = use('Test/Suite')('User')
-const User = use('App/Models/User')
+const Database = use('Database')
 const Hash = use('Hash')
+const User = use('App/Models/User')
 
 trait('Test/ApiClient')
 
@@ -16,12 +17,7 @@ before(async () => {
 })
 
 after(async () => {
-  await User
-    .query()
-    .where('email', 'email@mail.com')
-    .orWhere('email', 'newuser@mail.com')
-    .orWhere('email', 'newuser-update@mail.com')
-    .delete()
+  await Database.truncate('users')
 })
 
 test('check User password has been hashed', async ({ assert }) => {

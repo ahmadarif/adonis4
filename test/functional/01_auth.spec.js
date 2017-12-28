@@ -1,6 +1,7 @@
 'use strict'
 
 const { test, trait, before, after } = use('Test/Suite')('Auth')
+const Database = use('Database')
 const User = use('App/Models/User')
 
 let token = null
@@ -16,10 +17,7 @@ before(async () => {
 })
 
 after(async () => {
-  await User
-    .query()
-    .where('email', 'email@mail.com')
-    .delete()
+  await Database.truncate('users')
 })
 
 test('login', async ({ client }) => {
@@ -51,5 +49,23 @@ test('get profile', async ({ client }) => {
       username: "sample",
       email: "email@mail.com"
     }
+  })
+})
+
+test('get token lists', async ({ client }) => {
+  const response = await client.get('/api/auth/tokens')
+    .header('Authorization', 'Bearer ' + token)
+    .type('json').end()
+
+  response.assertStatus(200)
+  response.assertJSONSubset({
+    data: [
+      {
+        id: 1,
+        user_id: 1,
+        type: 'api_token',
+        is_revoked: 0
+      }
+    ]
   })
 })
