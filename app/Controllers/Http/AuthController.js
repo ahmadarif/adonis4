@@ -10,10 +10,6 @@ const ValidationException = use('App/Exceptions/ValidationException')
 
 class AuthController {
 
-    constructor() {
-        this.authService = new AuthService;
-    }
-
     async postLogin ({ request, response, auth }) {
         const validation = await validateAll(request.all(), {
             email: 'required|email',
@@ -22,7 +18,7 @@ class AuthController {
         if (validation.fails()) throw new ValidationException(validation.messages())
         
         const { email, password } = request.all()
-        const result = await this.authService.login(auth, email, password)
+        const result = await AuthService.login(auth, email, password)
 
         if (result.data != null) {
             return response.status(result.status).send({ data: result.data })
@@ -32,17 +28,17 @@ class AuthController {
     }
 
     async postLogout ({ response, auth }) {
-        await this.authService.logout(auth)
+        await AuthService.logout(auth)
         return response.send({ message: 'Logout successfully' })
     }
 
     async postLogoutOther ({ response, auth }) {
-        await this.authService.logoutOther(auth)
+        await AuthService.logoutOther(auth)
         return response.send({ message: 'Logout successfully' })
     }
 
     async postLogoutAll ({ response, auth }) {
-        await this.authService.logoutAll(auth)
+        await AuthService.logoutAll(auth)
         return response.send({ message: 'Logout successfully' })
     }
 
@@ -110,7 +106,7 @@ class AuthController {
             email: 'required|email|exists:users,email'
         })
         if (validation.fails()) throw new ValidationException(validation.messages())
-        await this.authService.forgotPassword(request.input('email'))
+        await AuthService.forgotPassword(request.input('email'))
         return response.send({ message: 'New password will been send to your Email.' })
     }
 
