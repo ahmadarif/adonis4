@@ -1,14 +1,18 @@
 'use strict'
 
+const AuthService = use('App/Services/AuthService')
+const Response = use('App/Class/Response')
 const User = use('App/Models/User')
 const Hash = use('Hash')
 const Encryption = use('Encryption')
 const { validateAll } = use('Validator')
 const ValidationException = use('App/Exceptions/ValidationException')
-const randomstring = use("randomstring")
-const Kue = use('Kue')
 
 class AuthController {
+
+    constructor() {
+        this.authService = new AuthService;
+    }
 
     async postLogin ({ request, response, auth }) {
         const validation = await validateAll(request.all(), {
@@ -17,51 +21,28 @@ class AuthController {
         })
         if (validation.fails()) throw new ValidationException(validation.messages())
         
-        try {
-            const { email, password } = request.all()
-            const token = await auth.authenticator('api').attempt(email, password)
-            return response.status(200).send({ data: token })
-        } catch (error) {
-            let message = null
-            switch (error.name) {
-                case 'UserNotFoundException': message = 'Cannot find user with provided email.'; break
-                case 'PasswordMisMatchException': message = 'Invalid user password.'; break
-            }
-            return response.status(error.status).send({ message: message })
+        const { email, password } = request.all()
+        const result = await this.authService.login(auth, email, password)
+
+        if (result.data != null) {
+            return response.status(result.status).send({ data: result.data })
+        } else {
+            return response.status(result.status).send({ message: result.message })
         }
     }
 
     async postLogout ({ response, auth }) {
-        const user = auth.current.user
-        const token = auth.getAuthHeader()
-        await user
-            .tokens()
-            .where('type', 'api_token')
-            .where('is_revoked', false)
-            .where('token', Encryption.decrypt(token))
-            .update({ is_revoked: true })
-        return response.send({ message: 'Logout successfully' })
-    }
-
-    async postLogoutAll ({ response, auth }) {
-        const user = auth.current.user
-        await user
-            .tokens()
-            .where('type', 'api_token')
-            .where('is_revoked', false)
-            .update({ is_revoked: true })
+        await this.authService.logout(auth)
         return response.send({ message: 'Logout successfully' })
     }
 
     async postLogoutOther ({ response, auth }) {
-        const user = auth.current.user
-        const token = auth.getAuthHeader()
-        await user
-            .tokens()
-            .where('type', 'api_token')
-            .where('is_revoked', false)
-            .whereNot('token', Encryption.decrypt(token))
-            .update({ is_revoked: true })
+        await this.authService.logoutOther(auth)
+        return response.send({ message: 'Logout successfully' })
+    }
+
+    async postLogoutAll ({ response, auth }) {
+        await this.authService.logoutAll(auth)
         return response.send({ message: 'Logout successfully' })
     }
 
@@ -129,16 +110,7 @@ class AuthController {
             email: 'required|email|exists:users,email'
         })
         if (validation.fails()) throw new ValidationException(validation.messages())
-
-        const plainPassword = randomstring.generate(8)
-        const safePassword = await Hash.make(plainPassword)
-        const user = await User.findBy('email', request.input('email'))
-        user.password = safePassword
-        await user.save()
-
-        const data = { newPassword: plainPassword, user: user.toJSON() }
-        Kue.dispatch('forgotpassword-job', data, 'high')
-
+        await this.authService.forgotPassword(request.input('email'))
         return response.send({ message: 'New password will been send to your Email.' })
     }
 
