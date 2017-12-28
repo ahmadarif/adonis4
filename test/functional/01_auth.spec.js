@@ -112,3 +112,12 @@ test('logout all token', async ({ client }) => {
   response.assertStatus(200)
   response.assertJSON({ message: 'Logout successfully' })
 })
+
+test('check unauthorized user', async ({ client }) => {
+  const response = await client.get('/api/auth/profile')
+    .header('Authorization', 'Bearer ' + token)
+    .type('json').end()
+
+  response.assertStatus(401)
+  response.assertJSON({ message: 'Invalid API token.' })
+})
