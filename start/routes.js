@@ -45,3 +45,5 @@ Route.get('/auth/:provider/callback', 'AuthController.handleProviderCallback').a
 Route.get('/logout', 'AuthController.logout').as('logout')
 Route.get('/profile', 'AuthController.currentProfile').as('profile').middleware('auth')
 Route.get('/forgotPassword', 'AuthController.forgotPassword').as('forgotPassword')
+
+Route.get('/test/whois', 'TestController.whois')
