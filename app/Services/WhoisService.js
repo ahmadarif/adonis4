@@ -5,7 +5,7 @@ const parser = require('parse-whois')
 
 class WhoisService {
 
-    async lookup (url) {
+    lookup (url) {
         return new Promise((resolve, reject) => {
             whois.lookup(url, function(err, data) {
                 if (err) {
@@ -17,7 +17,7 @@ class WhoisService {
         })
     }
 
-    async lookupJSON (url) {
+    lookupJSON (url) {
         return new Promise((resolve, reject) => {
             whois.lookup(url, function(err, data) {
                 if (err) {
