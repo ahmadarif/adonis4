@@ -4,6 +4,7 @@ const { test, trait } = use('Test/Suite')('Browser')
 
 trait('Test/Browser', {
   // headless: false
+  args: ['--no-sandbox', '--disable-setuid-sandbox']
 })
 
 test('Visit home page', async ({ browser }) => {
