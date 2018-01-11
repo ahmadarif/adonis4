@@ -1,9 +1,7 @@
-'use strict'
-
 const { ServiceProvider } = require('@adonisjs/fold')
 
 class ExistsRuleProvider extends ServiceProvider {
-  async isExists (data, field, message, args, get) {
+  async existsFn (data, field, message, args, get) {
     const value = get(data, field)
     if (!value) {
       /**
@@ -18,13 +16,13 @@ class ExistsRuleProvider extends ServiceProvider {
     const Database = use('Database')
     const row = await Database.table(table).where(column, value).first()
     if (!row) {
-      throw `${column} doesn't exists`
+      throw message
     }
   }
 
   boot () {
     const Validator = use('Validator')
-    Validator.extend('exists', this.isExists)
+    Validator.extend('exists', this.existsFn)
   }
 }
 
