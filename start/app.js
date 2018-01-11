@@ -1,5 +1,7 @@
 'use strict'
 
+const path = require('path')
+
 /*
 |--------------------------------------------------------------------------
 | Providers
@@ -25,7 +27,8 @@ const providers = [
   'adonis-throttle/providers/ThrottleProvider',
   'adonis-scheduler/providers/SchedulerProvider',
   '@adonisjs/ally/providers/AllyProvider',
-  '@adonisjs/mail/providers/MailProvider'
+  '@adonisjs/mail/providers/MailProvider',
+  path.join(__dirname, '../providers/ExistsRuleProvider.js')
 ]
 
 /*
