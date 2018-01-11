@@ -1,15 +1,16 @@
 language: node_js
 node_js:
-  - 8.9.1
+- 8.9.1
 sudo: false
 notifications:
-  slack: gambitechno:edLQSSlj2SRDMpLqzVy89oYp
+  slack:
+    secure: yT5EzyfFp8e5xMxbyRtxBEVpRSYyzjyY4IJQa5SjPdQb72ulXmlcca3EgrfWCeVCNW1sdQjgPPk6s0Hu2+612CPEvZMuW2n62+8Wc0ahLVmvLmDDecoqWgPObzhdcfK5VG2deM07VPtq5p2ElmSSkH9uL84KJE/NZTDtHD3yJxWqPhwynBg1JqMO3gfXhvLdBeAtzT9u6a6Eeezjy04fKUVvTqATTHQ73huR6Yme/nLMKTXCfJmUuXd2gXZ7HpfJfK2YRojs6JZ5e9biGXiD9zfZRkzilMtjbGr8ir9x5tiDE9ymLA59u66yMPtsH+eeRdD/uMWINeGKUX107+R61X71NZx2d1IEd7C6K3JHEhY2s0m5q2EePnWiRZ/wObQm3DNv0rXa3foLVm9UtxZe/7CBy8MyY81TwQmqYyqBrWpT7V40ty7zr0tbeY4qaJ1B3kNjI/sjN8xmT5JGxjXL7IvmUo6H5vg2IW1fV6WaMAMK2+vVaTCzbNtwueSO37m92FCXUoy2OEsphx3KWnn50M8R/aOz+blHY13bvxN1GKV4p6GOL2BaRXpEjYUfo3addbDCr4kRoaatucyHDyW2DkZ+dMWO7hlPkCGBWVw+6TjBzps2QtJNKRHywbAcJDtvcCOn4k8MSqyXBUgyOecaNcVe/b9PEV3V/zkF3PjAlx4=
 services:
-  - redis-server
+- redis-server
 cache:
   directories:
-    - "node_modules"
+  - node_modules
 before_install:
-  - cp .env.example .env
+- cp .env.example .env
 install:
-  - npm install
+- npm install
