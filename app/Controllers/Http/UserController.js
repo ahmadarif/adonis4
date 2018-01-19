@@ -6,9 +6,9 @@ const ValidationException = use('App/Exceptions/ValidationException')
 
 class UserController {
 
-    async getAll ({ response }) {
-        const users = await User.all()
-        return response.send({ data: users })
+    async getAll ({ request, response }) {
+        const users = await User.query().paginate(request.input('page', 1))
+        return response.send(users)
     }
 
     async getById ({ params, response }) {
