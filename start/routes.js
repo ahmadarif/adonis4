@@ -47,3 +47,4 @@ Route.get('/profile', 'AuthController.currentProfile').as('profile').middleware(
 Route.get('/forgotPassword', 'AuthController.forgotPassword').as('forgotPassword')
 
 Route.get('/test/whois', 'TestController.whois')
+Route.get('/test/jasper', 'TestController.jasper')

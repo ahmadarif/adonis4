@@ -35,6 +35,7 @@
     "adonis-kue": "^4.0.0",
     "adonis-scheduler": "^3.0.0",
     "adonis-throttle": "^2.0.1",
+    "jaspernode": "^1.0.0",
     "mysql": "^2.15.0",
     "node-whois": "^2.1.3",
     "parse-whois": "^1.0.0",
