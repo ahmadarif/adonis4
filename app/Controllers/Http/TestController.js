@@ -27,10 +27,13 @@ class TestController {
             myInt: 100,
             myImage: jasper.quotes('sample.jpg')
         }
-        await jasper.process(inputFile, outputFile, parameters).execute()
-
-        const params = await jasper.listParameters(inputFile).execute()
-        return response.send(params)
+        
+        try {   
+            const pathFile = await jasper.process(inputFile, outputFile, parameters).execute()
+            return response.send(pathFile)
+        } catch (e) {
+            return response.send(e)
+        }
     }
 
 }
