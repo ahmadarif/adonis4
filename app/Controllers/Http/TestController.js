@@ -17,6 +17,17 @@ class TestController {
         return response.send(data)
     }
 
+    async whoisPromisify ({ request, response }) {
+        const output = request.input('output')
+        let data = null
+        if (output == 'json') {
+            data = await Whois.lookupPromisifyJSON(request.input('url'))
+        } else {
+            data = await Whois.lookupPromisify(request.input('url'))
+        }
+        return response.send(data)
+    }
+
     async jasper ({ response }) {
         const jasper = new JasperNode(Helpers.appRoot('tmp/JasperNode'))
         let inputFile = Helpers.appRoot('tmp/JasperNode/params.jasper')

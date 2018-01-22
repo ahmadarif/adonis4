@@ -1,5 +1,6 @@
 'use strict'
 
+const Helpers = use('Helpers')
 const whois = require('node-whois')
 const parser = require('parse-whois')
 
@@ -31,6 +32,21 @@ class WhoisService {
                 }
             })
         })
+    }
+
+    lookupPromisify (url) {
+        const whoisPromisify = Helpers.promisify(whois)
+        return whoisPromisify.lookup(url)
+    }
+
+    async lookupPromisifyJSON (url) {
+        const whoisPromisify = Helpers.promisify(whois)
+        const data = await whoisPromisify.lookup(url)
+        const result = parser.parseWhoIsData(data)
+        for (var i = 0; i < result.length; i++) {
+            result[i].attribute = result[i].attribute.trim()
+        }
+        return result
     }
 
 }
