@@ -9,6 +9,7 @@
 <div align="center">
 
 [![Build Status](https://travis-ci.org/ahmadarif/adonis4.svg?branch=master)](https://travis-ci.org/ahmadarif/adonis4)
+[![Coverage Status](https://coveralls.io/repos/github/ahmadarif/adonis4/badge.svg?branch=master)](https://coveralls.io/github/ahmadarif/adonis4?branch=master)
 [![HitCount](http://hits.dwyl.io/ahmadarif/adonis4.svg)](http://hits.dwyl.io/ahmadarif/adonis4)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/ahmadarif/adonis4/issues)
 
