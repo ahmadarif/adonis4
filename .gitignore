@@ -12,3 +12,6 @@ yarn.lock
 database/development.sqlite
 
 .idea/
+
+.nyc_output/
+coverage/
