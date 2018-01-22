@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "node ace test",
-    "coverage": "nyc --reporter=html --reporter=text --reporter=lcov npm test | coveralls"
+    "coverage": "nyc --reporter=html --reporter=text --reporter=lcov npm test"
   },
   "keywords": [
     "adonisjs",
