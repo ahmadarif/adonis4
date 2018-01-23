@@ -47,6 +47,15 @@ class TestController {
         }
     }
 
+    async getTemplate ({ view }) {
+        return view.render('template')
+    }
+
+    async postTemplate ({ request, response }) {
+        const name = request.input('name')
+        return response.send({ name: name })
+    }
+
 }
 
 module.exports = TestController

@@ -48,3 +48,6 @@ Route.get('/forgotPassword', 'AuthController.forgotPassword').as('forgotPassword
 
 Route.get('/test/whois', 'TestController.whois')
 Route.get('/test/jasper', 'TestController.jasper')
+
+Route.get('/test/template', 'TestController.getTemplate')
+Route.post('/test/template', 'TestController.postTemplate').as('postTemplate')
