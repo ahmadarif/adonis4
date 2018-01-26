@@ -51,3 +51,7 @@ Route.get('/test/jasper', 'TestController.jasper')
 
 Route.get('/test/template', 'TestController.getTemplate')
 Route.post('/test/template', 'TestController.postTemplate').as('postTemplate')
+
+Route.get('/test/socket', async ({ view }) => {
+    return view.render('socket')
+})

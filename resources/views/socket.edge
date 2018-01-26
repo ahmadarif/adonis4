@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <title>Socket.IO chat</title>
+</head>
+<body>
+    <ul id="messages"></ul>
+    <form id="form-login" action="">
+        <label>Username</label>: 
+        <input id="username" autocomplete="off" /> 
+        <input id="password" autocomplete="off" /> 
+        <button>Login</button>
+    </form>
+    <form id="form-message" action="">
+        <label>Message: </label>
+        <input id="message" autocomplete="off" />
+        <button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        $(function () {
+            var socket = io('http://localhost:3333', {
+                query: { 
+                    username: 'ahmadarif',
+                    password: '123'
+                }
+            });
+            socket.on('connect', function() {
+                socket.on('authenticated', (msg) => {
+                    console.log('Welcome ', msg);
+                });
+                socket.on('chat message', function(msg) {
+                    console.log(msg, " sent!")
+                })
+            });
+            socket.on('error', (msg) => {
+                console.log("Error: ", msg);
+            });
+        
+            $('#form-login').submit(function(){
+                var username = $('#username').val()
+                var password = $('#password').val()
+                socket.emit('login', { username: username, password: password });
+                return false;
+            });
+        
+            $('#form-message').submit(function() {
+                socket.emit('chat message', $('#message').val());
+                $('#message').val('');
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>
