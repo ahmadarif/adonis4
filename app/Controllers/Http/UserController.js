@@ -22,6 +22,7 @@ class UserController {
             password: 'required',
             username: 'required|unique:users,username'
         })
+        /* istanbul ignore if */
         if (validation.fails()) throw new ValidationException(validation.messages())
 
         const user = new User()
@@ -39,6 +40,7 @@ class UserController {
             password: 'required',
             username: `required|unique:users,username,id,${params.id}`
         })
+        /* istanbul ignore if */
         if (validation.fails()) throw new ValidationException(validation.messages())
 
         const user = await User.findOrFail(params.id)

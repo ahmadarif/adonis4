@@ -1,3 +1,6 @@
+/* istanbul ignore file */
+'use strict'
+
 const Server = use('Server')
 const io = use('socket.io')(Server.getInstance())
 

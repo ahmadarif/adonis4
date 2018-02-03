@@ -19,6 +19,7 @@ const schema = require('../app/GraphQL/schema')
 
 Route.on('/').render('welcome')
 
+/* istanbul ignore next */
 Route.route('/graphql', ({ request, auth, response }) => {
   return GraphqlAdonis.graphql({
     schema,
@@ -26,6 +27,7 @@ Route.route('/graphql', ({ request, auth, response }) => {
   }, request, response)
 }, ['GET', 'POST'])
 
+/* istanbul ignore next */
 Route.get('/graphiql', ({ request, response }) => {
   return GraphqlAdonis.graphiql({ endpointURL: '/graphql' }, request, response)
 })
@@ -65,6 +67,7 @@ Route.get('/test/jasper', 'TestController.jasper')
 Route.get('/test/template', 'TestController.getTemplate')
 Route.post('/test/template', 'TestController.postTemplate').as('postTemplate')
 
+/* istanbul ignore next */
 Route.get('/test/socket', async ({ view }) => {
     return view.render('socket')
 })

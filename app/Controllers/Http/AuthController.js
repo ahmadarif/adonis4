@@ -15,11 +15,13 @@ class AuthController {
             email: 'required|email',
             password: 'required'
         })
+        /* istanbul ignore if */
         if (validation.fails()) throw new ValidationException(validation.messages())
         
         const { email, password } = request.all()
         const result = await AuthService.login(auth, email, password)
 
+        /* istanbul ignore else */
         if (result.data != null) {
             return response.status(result.status).send({ data: result.data })
         } else {
@@ -54,10 +56,12 @@ class AuthController {
 
 
     // web session: ===================================================================================
+    /* istanbul ignore next */
     async redirectToProvider ({ ally, params }) {
         await ally.driver(params.provider).redirect()
     }
     
+    /* istanbul ignore next */
     async handleProviderCallback ({ params, session, ally, auth, response }) {
         const provider = params.provider
         try {

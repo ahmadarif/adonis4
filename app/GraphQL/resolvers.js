@@ -2,6 +2,7 @@
 
 const User = use('App/Models/User')
 
+/* istanbul ignore next */
 const resolvers = {
   Query: {
     // fetch all users
