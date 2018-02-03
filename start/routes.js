@@ -14,8 +14,21 @@
 */
 
 const Route = use('Route')
+const GraphqlAdonis = use('ApolloServer')
+const schema = require('../app/GraphQL/schema')
 
 Route.on('/').render('welcome')
+
+Route.route('/graphql', ({ request, auth, response }) => {
+  return GraphqlAdonis.graphql({
+    schema,
+    context: { auth }
+  }, request, response)
+}, ['GET', 'POST'])
+
+Route.get('/graphiql', ({ request, response }) => {
+  return GraphqlAdonis.graphiql({ endpointURL: '/graphql' }, request, response)
+})
 
 Route.post('api/auth/login', 'AuthController.postLogin').middleware(['throttle:20'])
 Route.group(() => {

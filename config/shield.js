@@ -132,10 +132,11 @@ module.exports = {
   |
   */
   csrf: {
-    enable: true,
+    enable: false,
     methods: ['POST', 'PUT', 'DELETE'],
     filterUris: [
-      '/api/(.*)'
+      '/api/(.*)',
+      '/graphql',
     ],
     cookieOptions: {
       httpOnly: false,
