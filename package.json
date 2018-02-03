@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "node ace test",
-    "coverage": "nyc --reporter=html --reporter=text --reporter=lcov npm test"
+    "coverage": "nyc npm test"
   },
   "keywords": [
     "adonisjs",
@@ -56,5 +56,23 @@
   },
   "autoload": {
     "App": "./app"
+  },
+  "nyc": {
+    "exclude": [
+      "test",
+      "resources",
+      "database",
+      "public",
+      "tmp",
+      "start/socket.js",
+      "app/Listeners",
+      "app/GraphQL"
+    ],
+    "reporter": [
+      "html",
+      "lcov",
+      "text",
+      "text-summary"
+    ]
   }
 }

@@ -3,6 +3,7 @@ const { ServiceProvider } = require('@adonisjs/fold')
 class ExistsRuleProvider extends ServiceProvider {
   async existsFn (data, field, message, args, get) {
     const value = get(data, field)
+    /* istanbul ignore if */
     if (!value) {
       /**
        * skip validation if value is not defined. `required` rule
@@ -15,6 +16,7 @@ class ExistsRuleProvider extends ServiceProvider {
     
     const Database = use('Database')
     const row = await Database.table(table).where(column, value).first()
+    /* istanbul ignore if */
     if (!row) {
       throw message
     }

@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 'use strict'
 
 const Server = use('Server')

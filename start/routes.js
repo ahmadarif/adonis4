@@ -33,33 +33,34 @@ Route.get('/graphiql', ({ request, response }) => {
 })
 
 Route.post('api/auth/login', 'AuthController.postLogin').middleware(['throttle:20'])
+Route.post('api/auth/forgotPassword', 'AuthController.forgotPassword').as('forgotPassword').middleware(['throttle:20'])
 Route.group(() => {
-    Route.post('logout', 'AuthController.postLogout')
-    Route.post('logoutAll', 'AuthController.postLogoutAll')
-    Route.post('logoutOther', 'AuthController.postLogoutOther')
-    Route.get('profile', 'AuthController.getProfile')//.middleware(['role:sample1@mail.com'])
-    Route.get('tokens', 'AuthController.getTokens')
+  Route.post('logout', 'AuthController.postLogout')
+  Route.post('logoutAll', 'AuthController.postLogoutAll')
+  Route.post('logoutOther', 'AuthController.postLogoutOther')
+  Route.get('profile', 'AuthController.getProfile')//.middleware(['role:sample1@mail.com'])
+  Route.get('tokens', 'AuthController.getTokens')
 }).prefix('api/auth').middleware(['throttle:20', 'auth:api'])
 
 Route.group(() => {
-    Route.get('/', 'UserController.getAll')
-    Route.get('/:id', 'UserController.getById')
-    Route.post('/', 'UserController.postInsert')
-    Route.put('/:id', 'UserController.putUpdate')
-    Route.delete('/:id', 'UserController.deleteById')
+  Route.get('/', 'UserController.getAll')
+  Route.get('/:id', 'UserController.getById')
+  Route.post('/', 'UserController.postInsert')
+  Route.put('/:id', 'UserController.putUpdate')
+  Route.delete('/email', 'UserController.deleteByEmail')
+  Route.delete('/:id', 'UserController.deleteById')
 }).prefix('api/users').middleware(['throttle:20'])
 
 Route.group(() => {
-    Route.get('api/queue', 'QueueController.exampleQueue')
-    Route.get('api/redis', 'QueueController.exampleRedis')
-    Route.get('api/event', 'QueueController.exampleEvent')
+  Route.get('api/queue', 'QueueController.exampleQueue')
+  Route.get('api/redis', 'QueueController.exampleRedis')
+  Route.get('api/event', 'QueueController.exampleEvent')
 }).middleware(['throttle:20'])
 
 Route.get('/auth/:provider', 'AuthController.redirectToProvider').as('social.login')
 Route.get('/auth/:provider/callback', 'AuthController.handleProviderCallback').as('social.login.callback')
 Route.get('/logout', 'AuthController.logout').as('logout')
 Route.get('/profile', 'AuthController.currentProfile').as('profile').middleware('auth')
-Route.get('/forgotPassword', 'AuthController.forgotPassword').as('forgotPassword')
 
 Route.get('/test/whois', 'TestController.whois')
 Route.get('/test/jasper', 'TestController.jasper')
@@ -69,5 +70,5 @@ Route.post('/test/template', 'TestController.postTemplate').as('postTemplate')
 
 /* istanbul ignore next */
 Route.get('/test/socket', async ({ view }) => {
-    return view.render('socket')
+  return view.render('socket')
 })

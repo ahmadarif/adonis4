@@ -121,3 +121,14 @@ test('check unauthorized user', async ({ client }) => {
   response.assertStatus(401)
   response.assertJSON({ message: 'Invalid API token.' })
 })
+
+test('forgot password', async ({ client }) => {
+  const response = await client.post('/api/auth/forgotPassword')
+  .send({
+    email: 'email@mail.com',
+  })
+  .type('json').end()
+
+  response.assertStatus(200)
+  response.assertJSON({ message: 'New password will been send to your Email.' })
+})

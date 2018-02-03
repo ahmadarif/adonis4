@@ -9,6 +9,7 @@ const Env = use('Env')
  * @class ExceptionHandler
  */
 class ExceptionHandler {
+  /* istanbul ignore next */
   /**
    * Handle exception thrown during the HTTP lifecycle
    *

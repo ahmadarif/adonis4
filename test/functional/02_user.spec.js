@@ -120,3 +120,22 @@ test('check User has been deleted', async ({ client }) => {
     message: 'User not found.'
   })
 }).timeout(5000)
+
+test('delete User by Email (ExistsRuleProvider test)', async ({ client }) => {
+  await User.create({
+    username: "sample2",
+    email: "email2@mail.com",
+    password: "123"
+  })
+  
+  const response = await client.delete('/api/users/email')
+    .send({
+      email: 'email2@mail.com'
+    })
+    .type('json').end()
+  
+  response.assertStatus(200)
+  response.assertJSONSubset({
+    message: 'Delete successfully.'
+  })
+}).timeout(5000)

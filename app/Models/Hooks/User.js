@@ -14,6 +14,7 @@ const UserHook = module.exports = {}
  * @return {void}
  */
 UserHook.hashPassword = async (userInstance) => {
+  /* istanbul ignore else */
   if (userInstance.password) {
     userInstance.password = await Hash.make(userInstance.password)
   }
