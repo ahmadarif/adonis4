@@ -38,7 +38,8 @@ const globalMiddleware = [
 const namedMiddleware = {
   auth: 'Adonis/Middleware/Auth',
   throttle: 'Adonis/Middleware/Throttle',
-  role: 'App/Middleware/Role'
+  role: 'App/Middleware/Role',
+  hashid: 'Adonis/Middleware/Hashid'
 }
 
 /*

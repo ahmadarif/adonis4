@@ -14,23 +14,9 @@
 */
 
 const Route = use('Route')
-const GraphqlAdonis = use('ApolloServer')
-const schema = require('../app/GraphQL/schema')
+const GraphQLServer = use('Adonis/Addons/GraphQLServer')
 
 Route.on('/').render('welcome')
-
-/* istanbul ignore next */
-Route.route('/graphql', ({ request, auth, response }) => {
-  return GraphqlAdonis.graphql({
-    schema,
-    context: { auth }
-  }, request, response)
-}, ['GET', 'POST'])
-
-/* istanbul ignore next */
-Route.get('/graphiql', ({ request, response }) => {
-  return GraphqlAdonis.graphiql({ endpointURL: '/graphql' }, request, response)
-})
 
 Route.post('api/auth/login', 'AuthController.postLogin').middleware(['throttle:20'])
 Route.post('api/auth/forgotPassword', 'AuthController.forgotPassword').as('forgotPassword').middleware(['throttle:20'])
@@ -44,11 +30,11 @@ Route.group(() => {
 
 Route.group(() => {
   Route.get('/', 'UserController.getAll')
-  Route.get('/:id', 'UserController.getById')
+  Route.get('/:id', 'UserController.getById').middleware('hashid')
   Route.post('/', 'UserController.postInsert')
-  Route.put('/:id', 'UserController.putUpdate')
+  Route.put('/:id', 'UserController.putUpdate').middleware('hashid')
   Route.delete('/email', 'UserController.deleteByEmail')
-  Route.delete('/:id', 'UserController.deleteById')
+  Route.delete('/:id', 'UserController.deleteById').middleware('hashid')
 }).prefix('api/users').middleware(['throttle:20'])
 
 Route.group(() => {
@@ -71,4 +57,12 @@ Route.post('/test/template', 'TestController.postTemplate').as('postTemplate')
 /* istanbul ignore next */
 Route.get('/test/socket', async ({ view }) => {
   return view.render('socket')
+})
+
+Route.post('graphql', function (context) {
+  return GraphQLServer.handle(context)
+})
+
+Route.get('/graphiql', (context) => {
+  return GraphQLServer.handleUI(context, { endpointURL: '/graphql' })
 })

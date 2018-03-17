@@ -1,5 +1,6 @@
 'use strict'
 
+const BaseExceptionHandler = use('BaseExceptionHandler')
 const Env = use('Env')
 
 /**
@@ -8,7 +9,7 @@ const Env = use('Env')
  *
  * @class ExceptionHandler
  */
-class ExceptionHandler {
+class ExceptionHandler extends BaseExceptionHandler {
   /* istanbul ignore next */
   /**
    * Handle exception thrown during the HTTP lifecycle
@@ -41,14 +42,14 @@ class ExceptionHandler {
         case 400: return response.status(error.status).send({ message : 'Bad request.' })
       }
 
-      if (Env.get('NODE_ENV') === 'development' || Env.get('NODE_ENV') === 'testing') {
+      if (Env.get('NODE_ENV') === 'development') {
         return response.status(error.status).send({ errorMessage: error.message, errorName: error.name, errorCode: error.code })
-      } else {
+      } else if (Env.get('NODE_ENV') === 'production') {
         return response.status(error.status).send({ message : 'Something error happens, we will fix soon.' })
       }
-    } else {
-      response.status(error.status).send(error.message)
     }
+
+    return super.handle(...arguments)
   }
 
   /**

@@ -28,8 +28,10 @@ const providers = [
   'adonis-scheduler/providers/SchedulerProvider',
   '@adonisjs/ally/providers/AllyProvider',
   '@adonisjs/mail/providers/MailProvider',
+  '@adonisjs/lucid-slugify/providers/SlugifyProvider',
   path.join(__dirname, '../providers/ExistsRuleProvider.js'),
-  'adonis-apollo-server/providers/ApolloServerProvider'
+  'adonis-graphql/providers/GraphQLProvider',
+  'adonis-hashids/providers/HashidsProvider'
 ]
 
 /*

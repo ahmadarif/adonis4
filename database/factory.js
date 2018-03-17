@@ -11,12 +11,21 @@
 |
 */
 
-// const Factory = use('Factory')
+const Factory = use('Factory')
 
-/**
-  Factory.blueprint('App/Models/User', (faker) => {
-    return {
-      username: faker.username()
+Factory.blueprint('App/Models/User', (faker) => {
+  return {
+    username: faker.username(),
+    email: faker.email(),
+    password: 'secret'
+  }
+})
+
+Factory.blueprint('App/Models/Post', (faker) => {
+  return {
+    title: faker.sentence(),
+    user_id: async () => {
+      return (await Factory.model('App/Models/User').create()).id
     }
-  })
-*/
+  }
+})

@@ -1,18 +1,12 @@
 'use strict'
 
 const Model = use('Model')
+const Hashids = use('Hashids')
 
 class User extends Model {
   static boot () {
     super.boot()
 
-    /**
-     * A hook to bash the user password before saving
-     * it to the database.
-     *
-     * Look at `app/Models/Hooks/User.js` file to
-     * check the hashPassword method
-     */
     this.addHook('beforeSave', 'User.hashPassword')
   }
 
@@ -20,20 +14,17 @@ class User extends Model {
     return ['password']
   }
 
-  /**
-   * A relationship on tokens is required for auth to
-   * work. Since features like `refreshTokens` or
-   * `rememberToken` will be saved inside the
-   * tokens table.
-   *
-   * @method tokens
-   *
-   * @return {Object}
-   */
+  getId (id) {
+    return Hashids.encode(id)
+  }
+
   tokens () {
     return this.hasMany('App/Models/Token')
   }
-  
+
+  posts () {
+    return this.hasMany('App/Models/Post')
+  }
 }
 
 module.exports = User
