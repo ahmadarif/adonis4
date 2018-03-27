@@ -1,11 +1,10 @@
 'use strict'
 
 const User = use('App/Models/User')
-const { validate, validateAll, sanitize } = use('Validator')
+const { validateAll } = use('Validator')
 const ValidationException = use('App/Exceptions/ValidationException')
 
 class UserController {
-
   async getAll ({ request, response }) {
     const users = await User.query().paginate(request.input('page', 1))
     return response.send(users)
@@ -56,7 +55,7 @@ class UserController {
     await user.delete()
     return response.send({ message: 'Delete successfully.' })
   }
-    
+
   async deleteByEmail ({ request, response }) {
     const validation = await validateAll(request.all(), {
       email: 'required|email|exists:users,email'
@@ -68,7 +67,6 @@ class UserController {
     await user.delete()
     return response.send({ message: 'Delete successfully.' })
   }
-
 }
 
 module.exports = UserController

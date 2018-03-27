@@ -22,7 +22,6 @@ class MakeService extends Command {
 
       await this.generateFile(filePath, templateContent, { name })
 
-      const namespace = this.getNamespace(filePath)
       console.log(`${this.icon('success')} ${this.chalk.green('create')}  ${filePath}`)
     } catch ({ message }) {
       this.error(message)

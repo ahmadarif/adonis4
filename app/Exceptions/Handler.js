@@ -27,25 +27,25 @@ class ExceptionHandler extends BaseExceptionHandler {
 
     if (type === 'json') {
       switch (error.name) {
-        case 'InvalidApiToken': return response.status(error.status).send({ message : 'Invalid API token.' })
-        case 'ModelNotFoundException': return response.status(error.status).send({ message : error.message.split(" ")[6] + ' not found.' })
-        case 'HttpException': return response.status(error.status).send({ message : error.message })
-        case 'TooManyRequests': return response.status(error.status).send({ message : error.message })
-        case 'UserNotFoundException': return response.status(error.status).send({ message : error.message })
+        case 'InvalidApiToken': return response.status(error.status).send({ message: 'Invalid API token.' })
+        case 'ModelNotFoundException': return response.status(error.status).send({ message: error.message.split(' ')[6] + ' not found.' })
+        case 'HttpException': return response.status(error.status).send({ message: error.message })
+        case 'TooManyRequests': return response.status(error.status).send({ message: error.message })
+        case 'UserNotFoundException': return response.status(error.status).send({ message: error.message })
       }
-      
+
       switch (error.code) {
-        case 'SQLITE_CONSTRAINT': return response.status(error.status).send({ message : 'Constraint error.' })
+        case 'SQLITE_CONSTRAINT': return response.status(error.status).send({ message: 'Constraint error.' })
       }
 
       switch (error.statusCode) {
-        case 400: return response.status(error.status).send({ message : 'Bad request.' })
+        case 400: return response.status(error.status).send({ message: 'Bad request.' })
       }
 
       if (Env.get('NODE_ENV') === 'development') {
         return response.status(error.status).send({ errorMessage: error.message, errorName: error.name, errorCode: error.code })
       } else if (Env.get('NODE_ENV') === 'production') {
-        return response.status(error.status).send({ message : 'Something error happens, we will fix soon.' })
+        return response.status(error.status).send({ message: 'Something error happens, we will fix soon.' })
       }
     }
 
@@ -63,6 +63,7 @@ class ExceptionHandler extends BaseExceptionHandler {
    * @return {void}
    */
   async report (error, { request }) {
+    console.log(error)
   }
 }
 

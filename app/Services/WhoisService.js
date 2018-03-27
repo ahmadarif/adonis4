@@ -5,10 +5,9 @@ const whois = require('node-whois')
 const parser = require('parse-whois')
 
 class WhoisService {
-
   lookup (url) {
     return new Promise((resolve, reject) => {
-      whois.lookup(url, function(err, data) {
+      whois.lookup(url, function (err, data) {
         if (err) {
           reject(new Error('Whois error: ' + err.message))
         } else {
@@ -20,7 +19,7 @@ class WhoisService {
 
   lookupJSON (url) {
     return new Promise((resolve, reject) => {
-      whois.lookup(url, function(err, data) {
+      whois.lookup(url, function (err, data) {
         if (err) {
           reject(new Error('Whois error: ' + err.message))
         } else {
@@ -48,7 +47,6 @@ class WhoisService {
     }
     return result
   }
-
 }
 
-module.exports = new WhoisService
+module.exports = new WhoisService()

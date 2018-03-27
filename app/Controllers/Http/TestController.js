@@ -5,11 +5,10 @@ const Helpers = use('Helpers')
 const JasperNode = require('jaspernode')
 
 class TestController {
-
   async whois ({ request, response }) {
     const output = request.input('output')
     let data = null
-    if (output == 'json') {
+    if (output === 'json') {
       data = await Whois.lookupJSON(request.input('url'))
     } else {
       data = await Whois.lookup(request.input('url'))
@@ -20,7 +19,7 @@ class TestController {
   async whoisPromisify ({ request, response }) {
     const output = request.input('output')
     let data = null
-    if (output == 'json') {
+    if (output === 'json') {
       data = await Whois.lookupPromisifyJSON(request.input('url'))
     } else {
       data = await Whois.lookupPromisify(request.input('url'))
@@ -38,8 +37,8 @@ class TestController {
       myInt: 100,
       myImage: jasper.quotes('sample.jpg')
     }
-    
-    try {   
+
+    try {
       const pathFile = await jasper.process(inputFile, outputFile, parameters).execute()
       return response.send(pathFile)
     } catch (e) {
@@ -55,7 +54,6 @@ class TestController {
     const name = request.input('name')
     return response.send({ name: name })
   }
-
 }
 
 module.exports = TestController

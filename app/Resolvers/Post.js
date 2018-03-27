@@ -1,7 +1,6 @@
 'use strict'
 
 const Post = use('App/Models/Post')
-const GraphQLError = use('Adonis/Addons/GraphQLError')
 
 const resolvers = {
 
@@ -15,7 +14,7 @@ const resolvers = {
       const post = await Post.first(id)
       return post.toJSON()
     }
-  },
+  }
 
 }
 

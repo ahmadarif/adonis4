@@ -1,6 +1,6 @@
 'use strict'
 
-const sleep = require('system-sleep');
+const sleep = require('system-sleep')
 
 class Example {
   // If this getter isn't provided, it will default to 1.
@@ -16,11 +16,10 @@ class Example {
 
   // This is where the work is done.
   async handle (data) {
-    sleep(5000);
+    sleep(5000)
     console.log(`New Queue received = ${data.message}`)
     return 'haha'
   }
-
 }
 
 module.exports = Example

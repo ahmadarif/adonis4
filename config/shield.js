@@ -136,7 +136,7 @@ module.exports = {
     methods: ['POST', 'PUT', 'DELETE'],
     filterUris: [
       '/api/(.*)',
-      '/graphql',
+      '/graphql'
     ],
     cookieOptions: {
       httpOnly: false,

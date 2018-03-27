@@ -13,9 +13,9 @@ trait('Test/ApiClient')
 before(async () => {
   await User.create({
     id: 1,
-    username: "sample",
-    email: "email@mail.com",
-    password: "123"
+    username: 'sample',
+    email: 'email@mail.com',
+    password: '123'
   })
 })
 
@@ -35,8 +35,8 @@ test('get list of Users', async ({ client }) => {
   response.assertJSONSubset({
     data: [
       {
-        username: "sample",
-        email: "email@mail.com"
+        username: 'sample',
+        email: 'email@mail.com'
       }
     ]
   })
@@ -48,8 +48,8 @@ test('get User by ID', async ({ client }) => {
   response.assertJSONSubset({
     data: {
       id: id1,
-      username: "sample",
-      email: "email@mail.com"
+      username: 'sample',
+      email: 'email@mail.com'
     }
   })
 }).timeout(5000)
@@ -126,17 +126,17 @@ test('check User has been deleted', async ({ client }) => {
 
 test('delete User by Email (ExistsRuleProvider test)', async ({ client }) => {
   await User.create({
-    username: "sample2",
-    email: "email2@mail.com",
-    password: "123"
+    username: 'sample2',
+    email: 'email2@mail.com',
+    password: '123'
   })
-  
+
   const response = await client.delete('/api/users/email')
     .send({
       email: 'email2@mail.com'
     })
     .type('json').end()
-  
+
   response.assertStatus(200)
   response.assertJSONSubset({
     message: 'Delete successfully.'

@@ -7,8 +7,13 @@
   "scripts": {
     "start": "node server.js",
     "test": "node ace test",
-    "coverage": "nyc npm test"
+    "coverage": "nyc npm test",
+    "lint": "standard",
+    "lint:fix": "standard --fix"
   },
+  "pre-commit": [
+    "lint:fix"
+  ],
   "keywords": [
     "adonisjs",
     "adonis-app"
@@ -54,7 +59,9 @@
   "devDependencies": {
     "coveralls": "^3.0.0",
     "istanbul": "^0.4.5",
-    "nyc": "^11.6.0"
+    "nyc": "^11.6.0",
+    "pre-commit": "^1.2.2",
+    "standard": "^11.0.1"
   },
   "autoload": {
     "App": "./app"
@@ -75,6 +82,12 @@
       "lcov",
       "text",
       "text-summary"
+    ]
+  },
+  "standard": {
+    "globals": [ "use" ],
+    "ignore": [
+      "public/"
     ]
   }
 }

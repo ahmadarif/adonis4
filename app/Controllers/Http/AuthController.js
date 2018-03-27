@@ -1,15 +1,11 @@
 'use strict'
 
 const AuthService = use('App/Services/AuthService')
-const Response = use('App/Class/Response')
 const User = use('App/Models/User')
-const Hash = use('Hash')
-const Encryption = use('Encryption')
 const { validateAll } = use('Validator')
 const ValidationException = use('App/Exceptions/ValidationException')
 
 class AuthController {
-
   async postLogin ({ request, response, auth }) {
     const validation = await validateAll(request.all(), {
       email: 'required|email',
@@ -17,7 +13,7 @@ class AuthController {
     })
     /* istanbul ignore if */
     if (validation.fails()) throw new ValidationException(validation.messages())
-    
+
     const { email, password } = request.all()
     const result = await AuthService.login(auth, email, password)
 
@@ -45,7 +41,7 @@ class AuthController {
   }
 
   async getProfile ({ response, auth }) {
-    const user =  await auth.current.user
+    const user = await auth.current.user
     return response.send({ data: user })
   }
 
@@ -64,13 +60,12 @@ class AuthController {
     return response.send({ message: 'New password will been send to your Email.' })
   }
 
-
   // web session: ===================================================================================
   /* istanbul ignore next */
   async redirectToProvider ({ ally, params }) {
     await ally.driver(params.provider).redirect()
   }
-    
+
   /* istanbul ignore next */
   async handleProviderCallback ({ params, session, ally, auth, response }) {
     const provider = params.provider
@@ -78,7 +73,8 @@ class AuthController {
       const userData = await ally.driver(params.provider).getUser()
 
       try {
-          await auth.check()
+        await auth.check()
+        return response.redirect('/')
       } catch (error) {
         console.log('error = ' + error)
         console.log('email = ' + userData.getEmail())
@@ -97,7 +93,6 @@ class AuthController {
 
         const user = await User.findOrCreate(whereClause, userDetails)
         await auth.login(user)
-      } finally {
         return response.redirect('/')
       }
     } catch (e) {
@@ -116,7 +111,6 @@ class AuthController {
   async currentProfile ({ auth }) {
     return auth.current.user
   }
-
 }
 
 module.exports = AuthController

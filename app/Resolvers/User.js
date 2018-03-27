@@ -25,7 +25,7 @@ const resolvers = {
         username: 'required|unique:users,username',
         email: 'required|email|unique:users,email',
         password: 'required',
-        password_confirmation: 'required_if:password|same:password',
+        password_confirmation: 'required_if:password|same:password'
       }
 
       const validation = await validateAll(data, rules)
@@ -36,8 +36,9 @@ const resolvers = {
 
       delete data.password_confirmation
 
-      return await User.create(data)
-    },
+      const user = await User.create(data)
+      return user
+    }
   },
 
   User: {

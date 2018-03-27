@@ -16,7 +16,7 @@ class Role {
     }
 
     if (!isHasRole) return response.unauthorized({ message: "You can't access to this request. Only User with email sample1@mail.com can access this route." })
-    
+
     // call next to advance the request
     await next()
   }

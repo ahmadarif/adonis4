@@ -10,9 +10,9 @@ trait('Test/ApiClient')
 
 before(async () => {
   await User.create({
-    username: "sample",
-    email: "email@mail.com",
-    password: "123"
+    username: 'sample',
+    email: 'email@mail.com',
+    password: '123'
   })
 })
 
@@ -29,11 +29,11 @@ test('login', async ({ client }) => {
     .type('json').end()
 
   token = await JSON.parse(response.text).data.token
-  
+
   response.assertStatus(200)
   response.assertJSONSubset({
     data: {
-      type: "bearer"
+      type: 'bearer'
     }
   })
 })
@@ -46,8 +46,8 @@ test('get profile', async ({ client }) => {
   response.assertStatus(200)
   response.assertJSONSubset({
     data: {
-      username: "sample",
-      email: "email@mail.com"
+      username: 'sample',
+      email: 'email@mail.com'
     }
   })
 })
@@ -86,11 +86,11 @@ test('login multiple times', async ({ client }) => {
   }
 
   token = await JSON.parse(response.text).data.token
-  
+
   response.assertStatus(200)
   response.assertJSONSubset({
     data: {
-      type: "bearer"
+      type: 'bearer'
     }
   })
 })
@@ -124,10 +124,10 @@ test('check unauthorized user', async ({ client }) => {
 
 test('forgot password', async ({ client }) => {
   const response = await client.post('/api/auth/forgotPassword')
-  .send({
-    email: 'email@mail.com',
-  })
-  .type('json').end()
+    .send({
+      email: 'email@mail.com'
+    })
+    .type('json').end()
 
   response.assertStatus(200)
   response.assertJSON({ message: 'New password will been send to your Email.' })

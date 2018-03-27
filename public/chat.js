@@ -44,6 +44,5 @@ $('#message').keyup(function (e) {
       username: window.username,
       body: message
     })
-    return
   }
 })

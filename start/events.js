@@ -12,7 +12,6 @@
 const Redis = use('Redis')
 Redis.subscribe('news', 'News.newMessage') // proccess in background
 
-
 /*
 |--------------------------------------------------------------------------
 | Events Listener (Running syncronized)

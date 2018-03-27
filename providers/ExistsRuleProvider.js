@@ -11,9 +11,9 @@ class ExistsRuleProvider extends ServiceProvider {
        */
       return
     }
-    
+
     const [table, column] = args
-    
+
     const Database = use('Database')
     const row = await Database.table(table).where(column, value).first()
     /* istanbul ignore if */

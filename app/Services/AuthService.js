@@ -4,16 +4,15 @@ const User = use('App/Models/User')
 const Response = use('App/Class/Response')
 const Hash = use('Hash')
 const Encryption = use('Encryption')
-const randomstring = use("randomstring")
+const randomstring = use('randomstring')
 const Kue = use('Kue')
 
 class AuthService {
-
   /**
    * Login process
    * Using auth api provider
    * @param {auth} auth
-   * @param {String} email 
+   * @param {String} email
    * @param {String} password
    * @returns App/Class/Response
    */
@@ -21,8 +20,7 @@ class AuthService {
     try {
       const token = await auth.authenticator('api').attempt(email, password)
       return new Response(200, null, token)
-    }
-    catch (error/* istanbul ignore next */) {
+    } catch (error/* istanbul ignore next */) {
       let message = null
       switch (error.name) {
         case 'UserNotFoundException': message = 'Cannot find user with provided email.'; break
@@ -80,12 +78,12 @@ class AuthService {
 
   /**
    * Forgot password feature, send email with new password
-   * @param {String} email 
+   * @param {String} email
    */
   async forgotPassword (email) {
     const plainPassword = randomstring.generate(8)
     const safePassword = await Hash.make(plainPassword)
-    
+
     const user = await User.findBy('email', email)
     user.password = safePassword
     await user.save()
@@ -93,7 +91,6 @@ class AuthService {
     const data = { newPassword: plainPassword, user: user.toJSON() }
     Kue.dispatch('forgotpassword-job', data, 'high')
   }
-
 }
 
 module.exports = new AuthService()

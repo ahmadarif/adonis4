@@ -3,7 +3,6 @@
 const Mail = use('Mail')
 
 class ForgotPassword {
-
   static get concurrency () {
     return 1
   }
@@ -26,7 +25,6 @@ class ForgotPassword {
     }
     console.log('ForgotPassword: finished')
   }
-
 }
 
 module.exports = ForgotPassword
