@@ -17,6 +17,7 @@ const Route = use('Route')
 const GraphQLServer = use('Adonis/Addons/GraphQLServer')
 
 Route.on('/').render('welcome')
+Route.on('chat').render('chat')
 
 Route.post('api/auth/login', 'AuthController.postLogin').middleware(['throttle:20'])
 Route.post('api/auth/forgotPassword', 'AuthController.forgotPassword').as('forgotPassword').middleware(['throttle:20'])

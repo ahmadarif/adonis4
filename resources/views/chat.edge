@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  {{ css('chat') }}
+</head>
+<body>
+
+  @set('username', request.input('username'))
+
+  <div class="chat-container">
+    <div class="chat-wrapper">
+      @if(username)
+        <div class="header">
+          <h2>
+            <span>Hello {{ username }}!</span>
+            <span class="connected-users"></span>
+            <span class="connection-status"></span>
+          </h2>
+        </div>
+        <div class="messages">
+        </div>
+        <div class="input-wrapper">
+          <input type="text" id="message" placeholder="Enter message" autofocus=1>
+        </div>
+      @else
+        <div class="onboard">
+          <form action="/chat" method="GET">
+            <input type="text" id="name" name="username" placeholder="Enter your name" autofocus=1>
+          </form>
+        </div>
+      @endif
+    </div>
+  </div>
+
+  <script>
+    window.username = '{{ username }}'
+  </script>
+
+  {{ script('https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js') }}
+  {{ script('https://unpkg.com/@adonisjs/websocket-client@1.0.9/dist/Ws.browser.js') }}
+  {{ script('https://unpkg.com/jquery@3.3.1/dist/jquery.js') }}
+  {{ script('chat.js') }}
+</body>
+</html>
