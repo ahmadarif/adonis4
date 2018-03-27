@@ -12,7 +12,7 @@
     "lint:fix": "standard --fix"
   },
   "pre-commit": [
-    "lint:fix"
+    "lint"
   ],
   "keywords": [
     "adonisjs",
