@@ -32,7 +32,8 @@ const providers = [
   path.join(__dirname, '../providers/ExistsRuleProvider.js'),
   'adonis-graphql/providers/GraphQLProvider',
   'adonis-hashids/providers/HashidsProvider',
-  '@adonisjs/websocket/providers/WsProvider'
+  '@adonisjs/websocket/providers/WsProvider',
+  path.join(__dirname, '../providers/ServiceGeneratorProvider.js'),
 ]
 
 /*
