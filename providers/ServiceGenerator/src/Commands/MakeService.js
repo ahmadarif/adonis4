@@ -1,7 +1,7 @@
 'user strict'
 
 const { Command } = require('@adonisjs/ace')
-const { join, basename } = require('path')
+const { join } = require('path')
 const _ = require('lodash')
 
 class MakeService extends Command {
@@ -15,7 +15,7 @@ class MakeService extends Command {
 
   async handle ({ name }) {
     try {
-      name = _.upperFirst(_.camelCase(name))
+      name = _.upperFirst(_.camelCase(name)) + 'Service'
       const templatePath = join(__dirname, '../Templates/Service.mustache')
       const templateContent = await this.readFile(templatePath, 'utf-8')
       const filePath = join('app/Services', name) + '.js'
@@ -26,13 +26,6 @@ class MakeService extends Command {
     } catch ({ message }) {
       this.error(message)
     }
-  }
-
-  /**
-   * Returns namespace for a given resource
-   */
-  getNamespace (filePath) {
-    return `App/Services/${basename(filePath).replace('.js', '')}`
   }
 }
 

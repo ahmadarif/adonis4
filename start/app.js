@@ -1,6 +1,6 @@
 'use strict'
 
-const path = require('path')
+const Helpers = use('Helpers')
 
 /*
 |--------------------------------------------------------------------------
@@ -29,11 +29,10 @@ const providers = [
   '@adonisjs/ally/providers/AllyProvider',
   '@adonisjs/mail/providers/MailProvider',
   '@adonisjs/lucid-slugify/providers/SlugifyProvider',
-  path.join(__dirname, '../providers/ExistsRuleProvider.js'),
+  Helpers.appRoot('providers/ExistsRuleProvider'),
   'adonis-graphql/providers/GraphQLProvider',
   'adonis-hashids/providers/HashidsProvider',
-  '@adonisjs/websocket/providers/WsProvider',
-  path.join(__dirname, '../providers/ServiceGeneratorProvider.js')
+  '@adonisjs/websocket/providers/WsProvider'
 ]
 
 /*
@@ -50,7 +49,8 @@ const aceProviders = [
   'adonis-kue/providers/CommandsProvider',
   'adonis-scheduler/providers/CommandsProvider',
   '@adonisjs/vow/providers/VowProvider',
-  '@adonisjs/vow-browser/providers/VowBrowserProvider'
+  '@adonisjs/vow-browser/providers/VowBrowserProvider',
+  Helpers.appRoot('providers/ServiceGenerator/providers/ServiceGeneratorProvider')
 ]
 
 /*
