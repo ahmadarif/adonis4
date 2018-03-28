@@ -22,6 +22,7 @@ class UserController {
       username: 'required|unique:users,username'
     })
     if (validation.fails()) throw new ValidationException(validation.messages())
+    // if (validation.fails()) return response.badRequest({ message: 'Validation error.', errors: validation.messages() })
 
     const user = new User()
     user.password = request.input('password')
