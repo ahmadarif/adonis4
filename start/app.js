@@ -49,7 +49,6 @@ const aceProviders = [
   'adonis-kue/providers/CommandsProvider',
   'adonis-scheduler/providers/CommandsProvider',
   '@adonisjs/vow/providers/VowProvider',
-  '@adonisjs/vow-browser/providers/VowBrowserProvider',
   Helpers.appRoot('providers/ServiceGenerator/providers/ServiceGeneratorProvider')
 ]
 

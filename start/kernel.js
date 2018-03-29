@@ -39,7 +39,7 @@ const namedMiddleware = {
   auth: 'Adonis/Middleware/Auth',
   throttle: 'Adonis/Middleware/Throttle',
   role: 'App/Middleware/Role',
-  hashid: 'Adonis/Middleware/Hashid'
+  hashid: 'App/Middleware/Hashid'
 }
 
 /*

@@ -9,9 +9,10 @@ package-lock.json
 yarn.lock
 
 # The development sqlite file
-database/development.sqlite
+*.sqlite
 
 .idea/
 
+# code coverage
 .nyc_output/
 coverage/
