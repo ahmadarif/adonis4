@@ -9,8 +9,8 @@
 | your listeners are stored inside `app/Listeners` directory.
 |
 */
-const Redis = use('Redis')
-Redis.subscribe('news', 'News.newMessage') // proccess in background
+// const Redis = use('Redis')
+// Redis.subscribe('news', 'News.newMessage') // proccess in background
 
 /*
 |--------------------------------------------------------------------------

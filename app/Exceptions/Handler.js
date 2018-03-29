@@ -24,8 +24,7 @@ class ExceptionHandler extends BaseExceptionHandler {
    * @return {void}
    */
   async handle (error, { request, response }) {
-    const type = request.is(['html', 'json'])
-
+    const type = request.accepts(['json', 'html'])
     if (type === 'json') {
       switch (error.name) {
         case 'InvalidApiToken': return response.status(error.status).send({ message: 'Invalid API token.' })
@@ -33,6 +32,7 @@ class ExceptionHandler extends BaseExceptionHandler {
         case 'HttpException': return response.status(error.status).send({ message: error.message })
         case 'TooManyRequests': return response.status(error.status).send({ message: error.message })
         case 'UserNotFoundException': return response.status(error.status).send({ message: error.message })
+        case 'PasswordMisMatchException': return response.status(error.status).send({ message: 'Cannot verify user password' })
       }
 
       switch (error.code) {
