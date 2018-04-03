@@ -7,9 +7,11 @@ const Helpers = use('Helpers')
 
 /**
  * Service to interact with Google Cloud Storage
+ *
  * Dependencies:
  * - Google Cloud Storage : npm i -S @google-cloud/storage
  * - Adonis Drive         : adonis install @adonisjs/drive
+ *
  * Other services : https://github.com/googleapis/nodejs-storage/blob/master/samples/files.js
  */
 class GcsService {
