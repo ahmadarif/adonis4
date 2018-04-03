@@ -54,6 +54,54 @@ class TestController {
     const name = request.input('name')
     return response.send({ name: name })
   }
+
+  async postCreateBucket ({ request, response }) {
+    const GCS = require('App/Services/GcsService')
+
+    try {
+      await GCS.createBucket('uhuy')
+      return response.send({ message: 'DONE' })
+    } catch (e) {
+      return response.send({ message: e.message })
+    }
+  }
+
+  async postUploadFile ({ request, response }) {
+    const GCS = require('App/Services/GcsService')
+
+    try {
+      const file = request.file('myfile')
+      const uploadedFile = await GCS.upload('baru-nih', file, 'HOH')
+      return response.send({ url: uploadedFile })
+    } catch (e) {
+      return response.send({ message: e.message })
+    }
+  }
+
+  async postDeleteFile ({ request, response }) {
+    const GCS = require('App/Services/GcsService')
+
+    try {
+      const filename = request.input('filename')
+      await GCS.delete('baru-nih', filename)
+      return response.send({ message: 'DONE' })
+    } catch (e) {
+      return response.send({ message: e.message })
+    }
+  }
+
+  async postMoveFile ({ request, response }) {
+    const GCS = require('App/Services/GcsService')
+
+    try {
+      const srcFilename = request.input('srcFilename')
+      const destFilename = request.input('destFilename')
+      await GCS.move('baru-nih', srcFilename, destFilename)
+      return response.send({ message: 'DONE' })
+    } catch (e) {
+      return response.send({ message: e.message })
+    }
+  }
 }
 
 module.exports = TestController

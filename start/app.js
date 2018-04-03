@@ -32,7 +32,8 @@ const providers = [
   Helpers.appRoot('providers/ExistsRuleProvider'),
   'adonis-graphql/providers/GraphQLProvider',
   'adonis-hashids/providers/HashidsProvider',
-  '@adonisjs/websocket/providers/WsProvider'
+  '@adonisjs/websocket/providers/WsProvider',
+  '@adonisjs/drive/providers/DriveProvider'
 ]
 
 /*
