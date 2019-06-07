@@ -1,0 +1,54 @@
+version: "2"
+
+services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    ports:
+      - 3333:3333
+    networks:
+      - adonis4
+    environments:
+      - HOST=0.0.0.0
+      - PORT=3333
+      - NODE_ENV=production
+      - APP_KEY=jumlahkarakterharustigapuluhduaa
+      - HASHIDS_SALT=mysecret
+
+      - DB_CONNECTION=sqlite
+      - DB_HOST=127.0.0.1
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=adonis
+      - DB_DATABASE=adonis
+
+      - MAIL_CONNECTION=smtp
+      - MAIL_HOST=smtp.gmail.com
+      - MAIL_PORT=587
+      - MAIL_USERNAME=
+      - MAIL_PASSWORD=
+
+      - GOOGLE_CLIENT_ID=
+      - GOOGLE_CLIENT_SECRET=
+      - GOOGLE_REDIRECT_URI=
+
+      - GITHUB_CLIENT_ID=
+      - GITHUB_CLIENT_SECRET=
+      - GITHUB_REDIRECT_URI=
+
+      - LINKEDIN_CLIENT_ID=
+      - LINKEDIN_CLIENT_SECRET=
+      - LINKEDIN_REDIRECT_URI=
+
+      - TWITTER_CLIENT_ID=
+      - TWITTER_CLIENT_SECRET=
+      - TWITTER_REDIRECT_URI=
+
+      - FOURSQUARE_CLIENT_ID=
+      - FOURSQUARE_CLIENT_SECRET=
+      - FOURSQUARE_REDIRECT_URI=
+
+networks:
+  adonis4:
+    driver: bridge

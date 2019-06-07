@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
+    "docker-start": "ENV_SILENT=true node server.js",
     "test": "node ace test",
     "coverage": "nyc npm test",
     "lint": "standard",
